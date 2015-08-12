@@ -1,0 +1,16 @@
+<p>
+  <%= label_tag l(:label_formula) %>
+  <%= text_area_tag 'custom_field[formula]', custom_field.formula %>
+  <% cfs_groups = CustomField.all.group_by {|f| f.class.name } %>
+  <%= select_tag '',
+                 option_groups_from_hash_collection_for_select(cfs_groups, 'id', 'name'),
+                 size: 10, multipe: true, id: 'select_for_formula' %>
+</p>
+<script type="text/javascript">
+    $("#select_for_formula").dblclick(function(e) {
+        var formula = $("#custom_field_formula");
+        $(this).find("option:selected").each(function() {
+            formula.val(formula.val() + '%{cf_' + $(this).val() + '} ');
+        });
+    });
+</script>
