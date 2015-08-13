@@ -1,3 +1,4 @@
 ru:
   label_computed: Вычисляемое
   label_formula: Формула
+  label_output_format: Тип результата
