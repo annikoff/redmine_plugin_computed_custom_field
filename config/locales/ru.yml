@@ -2,3 +2,5 @@ ru:
   label_computed: Вычисляемое
   label_formula: Формула
   label_output_format: Тип результата
+  formula_is_invalid: Ошибка в формуле
+  error_while_formula_computing: Ошибка вычисления по формуле в поле "%{custom_field_name}"

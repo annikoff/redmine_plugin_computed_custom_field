@@ -1,14 +1,11 @@
 module ComputedCustomFieldPlugin
   module CustomFieldPatch
     def self.included(base)
-      base.extend ClassMethods
       base.include InstanceMethods
       base.class_eval do
+        validate :validate_formula, if: :computed?
         before_save :make_field_uneditable, if: :computed?
       end
-    end
-
-    module ClassMethods
     end
 
     module InstanceMethods
@@ -19,6 +16,15 @@ module ComputedCustomFieldPlugin
 
       def computed?
         field_format == 'computed'
+      end
+
+      def validate_formula
+        formula = self.formula.gsub(/%\{cf_\d+\}/, '1')
+        begin
+          eval(formula)
+        rescue Exception
+          self.errors.add :base, l(:formula_is_invalid)
+        end
       end
     end
   end

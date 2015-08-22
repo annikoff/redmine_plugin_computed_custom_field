@@ -1,5 +1,5 @@
 module ComputedCustomFieldPlugin
-  class Computizator
+  class Patcher
     def self.patch_for_computing_cfs
       classes = [Issue, Project, User]
       classes.each do |klass|
