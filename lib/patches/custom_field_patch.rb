@@ -18,9 +18,15 @@ module ComputedCustomFieldPlugin
         field_format == 'computed'
       end
 
+      def fields_ids_from_formula
+        return unless computed?
+        formula.scan(/%\{cf_(\d+)\}/).flatten.map(&:to_i)
+      end
+
       def validate_formula
-        formula = self.formula.gsub(/%\{cf_\d+\}/, '1')
+        formula = self.formula.gsub(/%\{cf_\d+\}/, rand.to_s)
         begin
+          fields_ids_from_formula.each { |f_id| CustomField.find f_id }
           eval(formula)
         rescue Exception
           self.errors.add :base, l(:formula_is_invalid)

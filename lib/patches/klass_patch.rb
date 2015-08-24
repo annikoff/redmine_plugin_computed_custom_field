@@ -13,7 +13,7 @@ module ComputedCustomFieldPlugin
           next unless value.custom_field.computed?
           formula = value.custom_field.formula
           output_format = "to_#{value.custom_field.output_format.first}"
-          cf_ids = formula.scan(/%\{cf_(\d+)\}/).flatten.map(&:to_i)
+          cf_ids = value.custom_field.fields_ids_from_formula
           cf_ids.each do |cf_id|
             formula.sub!("%{cf_#{cf_id}}",
                          custom_field_value(cf_id).try(output_format).to_s)

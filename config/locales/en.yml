@@ -1,0 +1,6 @@
+en:
+  label_computed: Computed
+  label_formula: Formula
+  label_output_format: Output format
+  formula_is_invalid: Formula is invalid
+  error_while_formula_computing: Error while formula computing in field "%{custom_field_name}"
