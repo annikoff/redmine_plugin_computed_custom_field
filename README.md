@@ -6,6 +6,9 @@ Value of computed field can be set by formula.
 In formula constructions like %{cf_id} are replaced by IDs of custom fields.
 Valid formula is a valid Ruby code executed when customized object is updated.
 
+![ComputedCustomField plugin for Redmine](https://raw.githubusercontent.com/annikoff/images/master/redmine_plugin_computed_custom_field.png "")
+
+
 > ### Notes:
 > - %{cf_id} &mdash; must be an ID of existing custom field
 > - Be careful with code in formula, if it would wrong your application can be crashed
