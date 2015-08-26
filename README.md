@@ -1,7 +1,7 @@
 ### ComputedCustomField plugin for Redmine
 
 ### Description:
-This plugin adds new type of Custom Field named "computed".
+This plugin adds a new type of Custom Field named "computed".
 Value of computed field can be set by formula.
 In formula constructions like %{cf_id} are replaced by IDs of custom fields.
 Valid formula is a valid Ruby code executed when customized object is updated.
