@@ -10,7 +10,6 @@ ActionDispatch::Callbacks.to_prepare do
   require 'patcher'
   require 'patches/custom_field_patch'
   require 'patches/field_format_patch'
-  require 'patches/form_options_helper_patch'
   require 'patches/klass_patch'
 end
 

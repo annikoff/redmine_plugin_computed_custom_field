@@ -12,6 +12,7 @@ Valid formula is a valid Ruby code executed when customized object is updated.
 > ### Notes:
 > - %{cf_id} &mdash; must be an ID of existing custom field
 > - Be careful with code in formula, if it would wrong your application can be crashed
+> - This plugin has been tested on Redmine v3.1 with RoR v4.2.3, and doesn't work on Redmine v2.x
 
 ### Examples:
 
