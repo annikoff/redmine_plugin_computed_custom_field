@@ -2,7 +2,7 @@
 
 ### Description:
 This plugin adds a new type of Custom Field named "computed".
-Value of computed field can be set by formula.
+The value of computed field can be set by formula.
 In formula constructions like %{cf_id} are replaced by IDs of custom fields.
 Valid formula is a valid Ruby code executed when customized object is updated.
 
