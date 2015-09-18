@@ -1,0 +1,8 @@
+# Spanish translations by lublasco (https://github.com/lublasco)
+es:
+  label_computed: Calculado
+  label_formula: Fórmula
+  label_output_format: Formato de salida
+  label_available_custom_fields: Campos personalizados disponibles
+  formula_is_invalid: La fórmula es inválida
+  error_while_formula_computing: Error al aplicar la fórmula al campo "%{custom_field_name}"
