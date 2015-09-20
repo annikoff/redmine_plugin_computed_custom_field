@@ -22,7 +22,7 @@ module ComputedCustomFieldPlugin
     end
 
     def validate_formula
-      formula = self.formula.gsub(/%\{cf_\d+\}/, rand.to_s)
+      formula = self.formula.gsub(/%\{cf_\d+\}/, rand(0.0..1.0).to_s)
       begin
         fields_ids_from_formula.each { |f_id| CustomField.find f_id }
         eval(formula)

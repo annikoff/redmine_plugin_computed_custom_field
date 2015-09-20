@@ -5,26 +5,35 @@ This plugin adds a new type of Custom Field named "computed".
 The value of computed field can be set by formula.
 In formula constructions like %{cf_id} are replaced by IDs of custom fields.
 Valid formula is a valid Ruby code executed when customized object is updated.
+To put a field ID in the formula, double-click on an item in the list of available fields.
 
 ![ComputedCustomField plugin for Redmine](https://raw.githubusercontent.com/annikoff/images/master/redmine_plugin_computed_custom_field.png "")
-
 
 > ### Notes:
 > - %{cf_id} &mdash; must be an ID of existing custom field
 > - Be careful with code in formula, if it would wrong your application can be crashed
-> - This plugin has been tested on Redmine v3.1 with RoR v4.2.3, and doesn't work on Redmine v2.x
+> - This plugin has been tested on Redmine v2.6.7 with RoR v3.2.22 and Redmine v3.1 with RoR v4.2.3,
+
+### Installation:
+
+Clone from GitHub
+```sh
+git clone https://github.com/annikoff/redmine_plugin_computed_custom_field.git computed_custom_field
+```
+
+Or download [ZIP-archive](https://github.com/annikoff/redmine_plugin_computed_custom_field/archive/master.zip) and extract it into "computed_custom_field" directory.
 
 ### Examples:
 
-```Ruby
+```ruby
 %{cf_1}*2+%{cf_2}
 ```
 
-```Ruby
+```ruby
 (%{cf_1}/3.14).round(2)
 ```
 
-```Ruby
+```ruby
 if %{cf_1}.zero?
  %{cf_2}/2
 else

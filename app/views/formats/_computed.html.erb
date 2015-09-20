@@ -1,12 +1,13 @@
 <p>
   <%= label_tag l(:label_formula) %>
   <%= text_area_tag 'custom_field[formula]', custom_field.formula %>
-  <% cfs_groups = CustomField.where type: custom_field.type %>
+  <% cfs = CustomField.where(type: custom_field.type)
+                      .where('custom_fields.id != ?', custom_field.id || 0) %>
 </p>
 <p>
   <%= label_tag l(:label_available_custom_fields) %>
   <%= select_tag '',
-                 options_from_collection_for_select(cfs_groups, 'id', 'name'),
+                 options_from_collection_for_select(cfs, 'id', 'name'),
                  size: 5, multipe: true, id: 'select_for_formula' %>
 </p>
 <p>
