@@ -1,7 +1,7 @@
 Redmine::Plugin.register :computed_custom_field do
   name 'Computed custom field'
-  author 'Y. Annikov'
-  url 'https://github.com/annikoff/'
+  author 'Yakov Annikov'
+  url 'https://github.com/annikoff/redmine_plugin_computed_custom_field'
   description ''
   version '0.0.2'
   settings :default => {}

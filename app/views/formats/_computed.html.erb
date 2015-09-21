@@ -13,7 +13,7 @@
 <p>
   <%= label_tag l(:label_output_format) %>
   <%= select_tag 'custom_field[output_format]',
-                 options_for_select(%w(int float), custom_field.output_format) %>
+                 options_for_select(%w(int float string), custom_field.output_format) %>
 </p>
 <script type="text/javascript">
     $("#select_for_formula").dblclick(function(e) {
