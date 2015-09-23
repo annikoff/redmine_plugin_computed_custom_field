@@ -10,7 +10,7 @@ module ComputedCustomFieldPlugin
       custom_field_values.each do |value|
         next unless value.custom_field.computed?
         formula = value.custom_field.formula
-        output_format = "to_#{value.custom_field.output_format.first}"
+        output_format = "to_#{value.custom_field.output_format}"
         cf_ids = value.custom_field.fields_ids_from_formula
         cf_ids.each do |cf_id|
           formula.sub!("%{cf_#{cf_id}}",
