@@ -11,9 +11,8 @@ ActionDispatch::Callbacks.to_prepare do
   require 'patcher'
   require 'patches/custom_field'
   require 'patches/field_format'
-  require 'patches/query'
   require 'patches/object'
-  require 'patches/klass_patch'
+  require 'patches/klass'
 end
 
 RedmineApp::Application.configure do
