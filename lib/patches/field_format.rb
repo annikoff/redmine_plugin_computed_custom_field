@@ -46,6 +46,7 @@ module ComputedCustomFieldPlugin
           custom_field.fields_ids_from_formula.each { |f_id| CustomField.find f_id }
           object = eval(custom_field.type.sub('CustomField', '')).new
           def object.validate_formula(formula)
+            p formula
             eval(formula)
           end
           object.validate_formula(formula)

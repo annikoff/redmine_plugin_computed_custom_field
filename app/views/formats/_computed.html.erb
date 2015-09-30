@@ -1,5 +1,5 @@
 <p>
-  <%= label_tag l(:label_formula) %>
+  <%= label_tag l(:field_formula) %>
   <%= text_area_tag 'custom_field[formula]', custom_field.formula %>
   <% cfs = CustomField.where(type: custom_field.type)
                       .where('custom_fields.id != ?', custom_field.id || 0) %>

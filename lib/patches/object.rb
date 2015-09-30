@@ -2,6 +2,10 @@ module ComputedCustomFieldPlugin
   module ObjectPatch
     extend ActiveSupport::Concern
 
+    def to_float()
+      to_f
+    end
+
     def to_integer()
       to_i
     end
