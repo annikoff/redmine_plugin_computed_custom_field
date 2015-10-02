@@ -6,12 +6,11 @@ Redmine::Plugin.register :computed_custom_field do
   version '0.0.3'
   settings :default => {}
 end
-# TODO generate migration
+
 ActionDispatch::Callbacks.to_prepare do
   require 'patcher'
   require 'patches/custom_field'
   require 'patches/field_format'
-  require 'patches/object'
   require 'patches/klass'
 end
 
