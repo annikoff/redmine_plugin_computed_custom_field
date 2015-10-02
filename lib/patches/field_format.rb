@@ -71,7 +71,7 @@ module ComputedCustomFieldPlugin
         end
 
         begin
-          formula = custom_field.formula
+          formula = custom_field.formula.dup
           cf_ids = custom_field.fields_ids_from_formula
           cf_ids.each do |cf_id|
             # if custom field doesn't exists an exception would be raised
