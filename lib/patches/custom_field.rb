@@ -3,7 +3,6 @@ module ComputedCustomFieldPlugin
     extend ActiveSupport::Concern
 
     included do
-      validate :validate_formula, if: :computed?
       before_save :make_field_uneditable, if: :computed?
     end
 
@@ -19,20 +18,6 @@ module ComputedCustomFieldPlugin
     def fields_ids_from_formula
       return unless computed?
       formula.scan(/%\{cf_(\d+)\}/).flatten.map(&:to_i)
-    end
-
-    def validate_formula
-      formula = self.formula.gsub(/%\{cf_\d+\}/, rand(0.0..1.0).to_s)
-      begin
-        fields_ids_from_formula.each { |f_id| CustomField.find f_id }
-        object = eval(self.type.sub('CustomField', '')).new
-        def object.validate_formula(formula)
-          eval(formula)
-        end
-        object.validate_formula(formula)
-      rescue Exception
-        self.errors.add :base, l(:formula_is_invalid)
-      end
     end
   end
 end

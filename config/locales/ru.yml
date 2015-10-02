@@ -1,7 +1,7 @@
 ru:
   label_computed: Вычисляемое
-  label_formula: Формула
+  field_formula: Формула
   label_output_format: Тип результата
+  field_datetime_format: Формат даты/времени
   label_available_custom_fields: Доступные поля
-  formula_is_invalid: Ошибка в формуле
   error_while_formula_computing: Ошибка вычисления по формуле в поле "%{custom_field_name}"

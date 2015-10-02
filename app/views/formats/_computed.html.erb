@@ -1,5 +1,5 @@
 <p>
-  <%= label_tag l(:label_formula) %>
+  <%= label_tag l(:field_formula) %>
   <%= text_area_tag 'custom_field[formula]', custom_field.formula %>
   <% cfs = CustomField.where(type: custom_field.type)
                       .where('custom_fields.id != ?', custom_field.id || 0) %>
@@ -13,13 +13,43 @@
 <p>
   <%= label_tag l(:label_output_format) %>
   <%= select_tag 'custom_field[output_format]',
-                 options_for_select(%w(int float string), custom_field.output_format) %>
+                 options_for_select(%w(int float string datetime bool), custom_field.output_format) %>
+</p>
+<p class="custom_field_datetime_format">
+  <%= label_tag l(:field_datetime_format) %>
+  <% datetime_format = custom_field.datetime_format %>
+  <% default_format = '%F %R' %>
+  <%= text_field_tag 'custom_field[datetime_format]', (datetime_format.blank? ? default_format : datetime_format), 'data-value' => default_format %>
+  <a target="_blank" href="http://apidock.com/ruby/Time/strftime">
+    <img src="/images/help.png" alt="strftime">
+  </a>
 </p>
 <script type="text/javascript">
-    $("#select_for_formula").dblclick(function(e) {
-        var formula = $("#custom_field_formula");
-        $(this).find("option:selected").each(function() {
-            formula.val(formula.val() + '%{cf_' + $(this).val() + '} ');
+    (function() {
+        var output_format = $("#custom_field_output_format");
+        output_format.change(function() {
+            toggleDatetimeFormat(output_format);
         });
-    });
+        toggleDatetimeFormat(output_format);
+        function toggleDatetimeFormat(output_format) {
+            var name = 'custom_field_datetime_format',
+                datetime_format = $("#" + name),
+                datetime_format_block = $("." + name),
+                format_value = datetime_format.val();
+            if ($(output_format).val() == 'datetime') {
+                datetime_format.attr('value', datetime_format.attr('data-value'));
+                datetime_format_block.show();
+            }else {
+                format_value && datetime_format.attr('data-value', format_value);
+                datetime_format.attr('value', '');
+                datetime_format_block.hide();
+            }
+        }
+        $("#select_for_formula").dblclick(function(e) {
+            var formula = $("#custom_field_formula");
+            $(this).find("option:selected").each(function() {
+                formula.val(formula.val() + '%{cf_' + $(this).val() + '} ');
+            });
+        });
+    }())
 </script>
