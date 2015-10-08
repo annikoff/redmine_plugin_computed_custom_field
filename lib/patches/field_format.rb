@@ -85,6 +85,8 @@ module ComputedCustomFieldPlugin
                 formula.sub!("%{cf_#{cf_id}}", rand(1..100).to_s)
               when 'bool'
                 formula.sub!("%{cf_#{cf_id}}", rand(0..1) == 1 ? 'true' : 'false')
+              when 'list'
+                formula.sub!("%{cf_#{cf_id}}", cf.possible_values.sample)
               else
                 formula.sub!("%{cf_#{cf_id}}", 'string')
             end
