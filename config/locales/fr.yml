@@ -1,0 +1,7 @@
+fr:
+  label_computed: Calculé
+  field_formula: Formule
+  label_output_format: Format de sortie
+  field_datetime_format: Format date/heure
+  label_available_custom_fields: Champs personnalisés disponibles
+  error_while_formula_computing: Erreur pendant le calcul de la formule du champ "%{custom_field_name}"
