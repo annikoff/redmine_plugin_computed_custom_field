@@ -4,6 +4,7 @@ module ComputedCustomFieldPlugin
 
     included do
       after_save :save_issue
+      after_destroy :save_issue
     end
 
     def save_issue
