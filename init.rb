@@ -12,6 +12,7 @@ ActionDispatch::Callbacks.to_prepare do
   require 'patches/custom_field'
   require 'patches/field_format'
   require 'patches/klass'
+  require 'patches/time_entry'
 end
 
 RedmineApp::Application.configure do
