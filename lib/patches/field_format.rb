@@ -22,6 +22,8 @@ module ComputedCustomFieldPlugin
           when 'bool'
             options[:type] = :list_optional
             options[:values] = possible_values_options(custom_field)
+          when 'percentage'
+            options[:type] = :integer
           else
             options[:type] = custom_field.output_format.to_sym
         end
@@ -34,7 +36,7 @@ module ComputedCustomFieldPlugin
             value.to_datetime rescue nil
           when 'float'
             value.to_f
-          when 'integer'
+          when 'integer' || 'percentage'
             value.to_i
           when 'bool'
             value == '1' ? true : false
@@ -53,12 +55,15 @@ module ComputedCustomFieldPlugin
         view.text_field_tag(tag_name, value, options.merge(:id => tag_id, :disabled => true))
       end
 
-      def formatted_value(view, custom_field, value, customized=nil, html=false)
+      def formatted_value(view, custom_field, value, customized=nil, html=false)cd
         if value.present? && custom_field.output_format == 'datetime'
           value.try("to_#{custom_field.output_format}").strftime(custom_field.datetime_format)
         elsif custom_field.output_format == 'bool'
           return ::I18n.t(:general_text_Yes) if value.in? (['1', 'true'])
           return ::I18n.t(:general_text_No) if value.in? (['0', 'false'])
+        elsif custom_field.output_format == 'percentage'
+          ApplicationController.helpers.progress_bar(value.to_i, :width => '80px',
+                                                     :legend => "#{value.to_i}%", :class => 'progress')
         else
           value.to_s
         end
@@ -81,7 +86,7 @@ module ComputedCustomFieldPlugin
                 formula.sub!("%{cf_#{cf_id}}", 'Time.now')
               when 'float'
                 formula.sub!("%{cf_#{cf_id}}", rand(0.0..1.0).to_s)
-              when 'int'
+              when 'int' || 'percentage'
                 formula.sub!("%{cf_#{cf_id}}", rand(1..100).to_s)
               when 'bool'
                 formula.sub!("%{cf_#{cf_id}}", rand(0..1) == 1 ? 'true' : 'false')

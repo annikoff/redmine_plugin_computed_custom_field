@@ -21,7 +21,7 @@ module ComputedCustomFieldPlugin
                        result.to_datetime rescue nil
                      when 'float'
                        result.to_f
-                     when 'int'
+                     when 'int' || 'percentage'
                        result.to_i
                      when 'bool'
                        result ? '1' : '0'
