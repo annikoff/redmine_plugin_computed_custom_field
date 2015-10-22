@@ -51,21 +51,27 @@ module ComputedCustomFieldPlugin
       end
 
       def edit_tag(view, tag_id, tag_name, custom_value, options={})
-        value = formatted_value(view, custom_value.custom_field, custom_value.value)
+        case
+          when custom_value.custom_field.output_format == 'percentage'
+            value = "#{custom_value.value || 0}%"
+          else
+            value = formatted_value(view, custom_value.custom_field, custom_value.value)
+        end
         view.text_field_tag(tag_name, value, options.merge(:id => tag_id, :disabled => true))
       end
 
-      def formatted_value(view, custom_field, value, customized=nil, html=false)cd
-        if value.present? && custom_field.output_format == 'datetime'
-          value.try("to_#{custom_field.output_format}").strftime(custom_field.datetime_format)
-        elsif custom_field.output_format == 'bool'
-          return ::I18n.t(:general_text_Yes) if value.in? (['1', 'true'])
-          return ::I18n.t(:general_text_No) if value.in? (['0', 'false'])
-        elsif custom_field.output_format == 'percentage'
-          ApplicationController.helpers.progress_bar(value.to_i, :width => '80px',
-                                                     :legend => "#{value.to_i}%", :class => 'progress')
-        else
-          value.to_s
+      def formatted_value(view, custom_field, value, customized=nil, html=false)
+        case
+          when value.present? && custom_field.output_format == 'datetime'
+            value.try("to_#{custom_field.output_format}").strftime(custom_field.datetime_format)
+          when custom_field.output_format == 'bool'
+            return ::I18n.t(:general_text_Yes) if value.in? (['1', 'true'])
+            return ::I18n.t(:general_text_No) if value.in? (['0', 'false'])
+          when custom_field.output_format == 'percentage'
+            ApplicationController.helpers.progress_bar(value.to_i, :width => '80px',
+                                                       :legend => "#{value.to_i}%", :class => 'progress')
+          else
+            value.to_s
         end
       end
 

@@ -3,7 +3,7 @@ Redmine::Plugin.register :computed_custom_field do
   author 'Yakov Annikov'
   url 'https://github.com/annikoff/redmine_plugin_computed_custom_field'
   description ''
-  version '0.0.3'
+  version '0.0.4'
   settings :default => {}
 end
 
@@ -13,6 +13,7 @@ ActionDispatch::Callbacks.to_prepare do
   require 'patches/field_format'
   require 'patches/klass'
   require 'patches/time_entry'
+  require 'hooks'
 end
 
 RedmineApp::Application.configure do
