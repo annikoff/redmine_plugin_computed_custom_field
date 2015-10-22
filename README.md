@@ -13,7 +13,7 @@ To put a field ID in the formula, double-click on an item in the list of availab
 > - %{cf_id} &mdash; must be an ID of existing custom field
 > - Be careful with code in formula, if it would wrong your application can be crashed
 > - This plugin has been tested on Redmine v2.6.7 with RoR v3.2.22 and Redmine v3.1 with RoR v4.2.3
-> - There are five types of output format: "int", "float", "string", "datetime", "bool"
+> - There are six types of output format: "int", "float", "string", "datetime", "bool", "percentage"
 
 ### Installation:
 
@@ -51,5 +51,15 @@ end
 # For ProjectCustomField 
 self.parent_id == 2
 ```
+
+To write formulas this documentation can be helpful:
+- [Issue](http://www.rubydoc.info/github/edavis10/redmine/Issue)
+- [Project](http://www.rubydoc.info/github/edavis10/redmine/Project)
+- [User](http://www.rubydoc.info/github/edavis10/redmine/User)
+- [TimeEntry](http://www.rubydoc.info/github/edavis10/redmine/TimeEntry)
+- [Version](http://www.rubydoc.info/github/edavis10/redmine/Version)
+- [Group](http://www.rubydoc.info/github/edavis10/redmine/Group)
+- [Document](http://www.rubydoc.info/github/edavis10/redmine/Document)
+- [TimeEntryActivity, IssuePriority, DocumentCategory](http://www.rubydoc.info/github/edavis10/redmine/Enumeration)
 
 Licensed under the [MIT-LICENSE](https://raw.githubusercontent.com/annikoff/redmine_plugin_computed_custom_field/master/MIT-LICENSE)
