@@ -5,4 +5,4 @@ es:
   label_output_format: Formato de salida
   field_datetime_format: Formato de fecha/hora # My translation
   label_available_custom_fields: Campos personalizados disponibles
-  error_while_formula_computing: Error al aplicar la fórmula al campo "%{custom_field_name}"
+  error_while_formula_computing: Error al aplicar la fórmula al campo "%{custom_field_name}" — %{message}

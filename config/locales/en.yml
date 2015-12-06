@@ -4,4 +4,4 @@ en:
   label_output_format: Output format
   field_datetime_format: Date/Time format
   label_available_custom_fields: Available custom fields
-  error_while_formula_computing: Error while formula computing in field "%{custom_field_name}"
+  error_while_formula_computing: Error while formula computing in field "%{custom_field_name}" — %{message}

@@ -4,4 +4,4 @@ ru:
   label_output_format: Тип результата
   field_datetime_format: Формат даты/времени
   label_available_custom_fields: Доступные поля
-  error_while_formula_computing: Ошибка вычисления по формуле в поле "%{custom_field_name}"
+  error_while_formula_computing: Ошибка вычисления по формуле в поле "%{custom_field_name}" — %{message}

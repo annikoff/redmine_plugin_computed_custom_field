@@ -89,17 +89,17 @@ module ComputedCustomFieldPlugin
             cf = CustomField.find cf_id
             case cf.output_format || cf.field_format
               when 'date' || 'datetime'
-                formula.sub!("%{cf_#{cf_id}}", 'Time.now')
+                formula.gsub!("%{cf_#{cf_id}}", 'Time.now')
               when 'float'
-                formula.sub!("%{cf_#{cf_id}}", rand(0.0..1.0).to_s)
+                formula.gsub!("%{cf_#{cf_id}}", rand(0.0..1.0).to_s)
               when 'int' || 'percentage'
-                formula.sub!("%{cf_#{cf_id}}", rand(1..100).to_s)
+                formula.gsub!("%{cf_#{cf_id}}", rand(1..100).to_s)
               when 'bool'
-                formula.sub!("%{cf_#{cf_id}}", rand(0..1) == 1 ? 'true' : 'false')
+                formula.gsub!("%{cf_#{cf_id}}", rand(0..1) == 1 ? 'true' : 'false')
               when 'list'
-                formula.sub!("%{cf_#{cf_id}}", cf.possible_values.sample)
+                formula.gsub!("%{cf_#{cf_id}}", cf.possible_values.sample)
               else
-                formula.sub!("%{cf_#{cf_id}}", 'string')
+                formula.gsub!("%{cf_#{cf_id}}", 'string')
             end
           end
           object = eval(custom_field.type.sub('CustomField', '')).new
@@ -107,8 +107,9 @@ module ComputedCustomFieldPlugin
             eval(formula)
           end
           object.validate_formula(formula)
-        rescue Exception
+        rescue StandardError => e
           errors << [:formula, :invalid]
+          errors << [:base, e.message]
         end
         errors
       end
