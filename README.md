@@ -13,7 +13,7 @@ To put a field ID in the formula, double-click on an item in the list of availab
 > - %{cf_id} &mdash; must be an ID of existing custom field
 > - Be careful with code in formula, if it would wrong your application can be crashed
 > - This plugin has been tested on Redmine v2.6.7 with RoR v3.2.22 and Redmine v3.1 with RoR v4.2.3
-> - There are six types of output format: "int", "float", "string", "datetime", "bool", "percentage"
+> - There are six types of output format: "int", "float", "string", "link", "datetime", "bool", "percentage"
 
 ### Installation:
 
