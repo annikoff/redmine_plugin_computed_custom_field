@@ -24,6 +24,8 @@ module ComputedCustomFieldPlugin
             options[:values] = possible_values_options(custom_field)
           when 'percentage'
             options[:type] = :integer
+          when 'link'
+            options[:type] = :string
           else
             options[:type] = custom_field.output_format.to_sym
         end
@@ -36,12 +38,21 @@ module ComputedCustomFieldPlugin
             value.to_datetime rescue nil
           when 'float'
             value.to_f
-          when 'integer' || 'percentage'
+          when 'integer', 'percentage'
             value.to_i
           when 'bool'
             value == '1' ? true : false
           else
             value
+        end
+      end
+
+      def order_statement(custom_field)
+        case custom_field.output_format
+          when 'integer', 'percentage', 'float'
+            "CAST(CASE #{join_alias custom_field}.value WHEN '' THEN '0' ELSE #{join_alias custom_field}.value END AS decimal(30,3))"
+          else
+            super
         end
       end
 
@@ -51,11 +62,13 @@ module ComputedCustomFieldPlugin
       end
 
       def edit_tag(view, tag_id, tag_name, custom_value, options={})
-        case
-          when custom_value.custom_field.output_format == 'percentage'
-            value = "#{custom_value.value || 0}%"
+        value = case custom_value.custom_field.output_format
+          when 'percentage'
+            "#{custom_value.value || 0}%"
+          when 'link'
+            custom_value.value
           else
-            value = formatted_value(view, custom_value.custom_field, custom_value.value)
+            formatted_value(view, custom_value.custom_field, custom_value.value)
         end
         view.text_field_tag(tag_name, value, options.merge(:id => tag_id, :disabled => true))
       end
@@ -70,6 +83,8 @@ module ComputedCustomFieldPlugin
           when custom_field.output_format == 'percentage'
             ApplicationController.helpers.progress_bar(value.to_i, :width => '80px',
                                                        :legend => "#{value.to_i}%", :class => 'progress')
+          when custom_field.output_format == 'link'
+            view.link_to value, value
           else
             value.to_s
         end

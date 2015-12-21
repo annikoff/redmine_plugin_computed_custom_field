@@ -13,7 +13,7 @@
 <p>
   <%= label_tag l(:label_output_format) %>
   <%= select_tag 'custom_field[output_format]',
-                 options_for_select(%w(int float string datetime bool percentage), custom_field.output_format) %>
+                 options_for_select(%w(int float string link datetime bool percentage), custom_field.output_format) %>
 </p>
 <p class="custom_field_datetime_format">
   <%= label_tag l(:field_datetime_format) %>
