@@ -8,6 +8,7 @@ module ComputedCustomFieldPlugin
     end
 
     def save_issue
+      return if issue.blank?
       issue.init_journal(User.current)
       issue.save!
     end
