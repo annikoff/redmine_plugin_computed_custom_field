@@ -13,6 +13,20 @@ module ComputedCustomFieldPlugin
       def label
         "label_computed"
       end
+      if Redmine::FieldFormat::Base.methods.include? :totalable_supported
+        self.totalable_supported = true
+
+        def total_for_scope(custom_field, scope)
+          scope.joins(:custom_values).
+            where(:custom_values => {:custom_field_id => custom_field.id}).
+            where.not(:custom_values => {:value => ''}).
+            sum("CAST(#{CustomValue.table_name}.value AS decimal(30,3))")
+        end
+
+        def cast_total_value(custom_field, value)
+          cast_single_value(custom_field, value)
+        end
+      end
 
       def query_filter_options(custom_field, query)
         options = {}
