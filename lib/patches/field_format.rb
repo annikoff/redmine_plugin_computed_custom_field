@@ -13,6 +13,7 @@ module ComputedCustomFieldPlugin
       def label
         "label_computed"
       end
+
       if Redmine::FieldFormat::Base.methods.include? :totalable_supported
         self.totalable_supported = true
 
