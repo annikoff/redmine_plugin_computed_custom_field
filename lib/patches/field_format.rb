@@ -119,7 +119,7 @@ module ComputedCustomFieldPlugin
             cf = CustomField.find cf_id
             case cf.output_format || cf.field_format
               when 'date' || 'datetime'
-                formula.gsub!("%{cf_#{cf_id}}", 'Time.now')
+                formula.gsub!("%{cf_#{cf_id}}", Time.now.to_s)
               when 'float'
                 formula.gsub!("%{cf_#{cf_id}}", rand(0.0..1.0).to_s)
               when 'int' || 'percentage'
