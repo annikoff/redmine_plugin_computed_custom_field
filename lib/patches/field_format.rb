@@ -71,6 +71,10 @@ module ComputedCustomFieldPlugin
         end
       end
 
+      def group_statement(custom_field)
+        order_statement(custom_field)
+      end
+
       def possible_values_options(custom_field, object=nil)
         return [] unless custom_field.output_format == 'bool'
         [[::I18n.t(:general_text_Yes), '1'], [::I18n.t(:general_text_No), '0']]
