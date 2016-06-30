@@ -11,6 +11,7 @@ To put a field ID in the formula, double-click on an item in the list of availab
 
 > ### Notes:
 > - %{cf_id} &mdash; must be an ID of existing custom field
+> - If format of Custom Field is Text, Long Text or List, you need to surround '%{cf_id}' with quotes
 > - Be careful with code in formula, if it would wrong your application can be crashed
 > - This plugin has been tested on Redmine v2.6.7 with RoR v3.2.22 and Redmine v3.1 with RoR v4.2.3
 > - There are six types of output format: "int", "float", "string", "link", "datetime", "bool", "percentage"
@@ -25,9 +26,10 @@ git clone https://github.com/annikoff/redmine_plugin_computed_custom_field.git c
 Or download [ZIP-archive](https://github.com/annikoff/redmine_plugin_computed_custom_field/archive/master.zip) and extract it into "computed_custom_field" directory.
 
 ### Examples:
-
 ```ruby
-%{cf_1}*2+%{cf_2}
+%{cf_1}*2+%{cf_2} 
+# means 
+# custom_field_value(1) * 2 + custom_field_value(2)
 ```
 
 ```ruby
@@ -50,6 +52,11 @@ end
 ```ruby
 # For ProjectCustomField 
 self.parent_id == 2
+```
+
+```ruby
+# If format of Custom Field with ID 4 is Text, Long Text or List
+'%{cf_4}'
 ```
 
 To write formulas this documentation can be helpful:
