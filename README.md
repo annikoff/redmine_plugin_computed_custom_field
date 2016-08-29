@@ -59,6 +59,16 @@ self.parent_id == 2
 '%{cf_4}'
 ```
 
+```ruby
+# If format of Custom Field is Link
+"/projects/#{self.project_id.to_s}/issues/new?issue[subject]=Review+request+[##{self.id.to_s} #{self.subject}]&issue[tracker_id]=3"
+```
+
+```ruby
+# If format of Custom Field is Link, and you need to set up a specific link caption
+"'Click here for more details':/projects/#{project.try(:identifier)}/wiki"
+```
+
 To write formulas this documentation can be helpful:
 - [Issue](http://www.rubydoc.info/github/edavis10/redmine/Issue)
 - [Project](http://www.rubydoc.info/github/edavis10/redmine/Project)

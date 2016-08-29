@@ -103,7 +103,12 @@ module ComputedCustomFieldPlugin
             ApplicationController.helpers.progress_bar(value.to_i, :width => '80px',
                                                        :legend => "#{value.to_i}%", :class => 'progress')
           when custom_field.output_format == 'link'
-            view.link_to value, value
+            match = value.match(/['"](.+?)['"]:(.+)/)
+            if match
+              view.link_to match[1], match[2]
+            else
+              view.link_to value, value
+            end
           else
             value.to_s
         end
