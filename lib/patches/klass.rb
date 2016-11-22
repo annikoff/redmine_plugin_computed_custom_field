@@ -29,7 +29,7 @@ module ComputedCustomFieldPlugin
                        result.to_s
                    end
           self.custom_field_values = {value.custom_field.id => result}
-        rescue StandardError => e
+        rescue StandardError, SyntaxError => e
           self.errors.add :base, l(:error_while_formula_computing,
                                    custom_field_name: value.custom_field.name,
                                    message: e.message)
