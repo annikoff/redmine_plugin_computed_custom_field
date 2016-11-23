@@ -112,6 +112,8 @@ module ComputedCustomFieldPlugin
           else
             value.to_s
         end
+      rescue
+        value.to_s
       end
 
       def validate_custom_field(custom_field)
