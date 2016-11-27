@@ -3,7 +3,7 @@ Redmine::Plugin.register :computed_custom_field do
   author 'Yakov Annikov'
   url 'https://github.com/annikoff/redmine_plugin_computed_custom_field'
   description ''
-  version '0.0.7'
+  version '0.0.8'
   settings :default => {}
 end
 
