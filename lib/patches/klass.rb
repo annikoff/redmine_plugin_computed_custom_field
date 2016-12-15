@@ -14,6 +14,11 @@ module ComputedCustomFieldPlugin
         cf_ids.each do |cf_id|
           formula.gsub!("%{cf_#{cf_id}}", custom_field_value(cf_id).to_s)
         end
+        cfs = {}
+        cf_ids = formula.scan(/cfs\[(\d+)\]/).flatten.map(&:to_i)
+        cf_ids.each do |cf_id|
+          cfs[cf_id] = custom_field_value(cf_id)
+        end
         begin
           result = eval(formula)
           result = case value.custom_field.output_format

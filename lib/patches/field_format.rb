@@ -145,6 +145,7 @@ module ComputedCustomFieldPlugin
           end
           object = eval(custom_field.type.sub('CustomField', '')).new
           def object.validate_formula(formula)
+            cfs = {}
             eval(formula)
           end
           object.validate_formula(formula)
