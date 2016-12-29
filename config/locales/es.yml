@@ -1,8 +1,6 @@
 # Spanish translation by lublasco (https://github.com/lublasco)
 es:
-  label_computed: Calculado
+  field_is_computed: Calculado
   field_formula: Fórmula
-  label_output_format: Formato de salida
-  field_datetime_format: Formato de fecha/hora # My translation
   label_available_custom_fields: Campos personalizados disponibles
   error_while_formula_computing: Error al aplicar la fórmula al campo "%{custom_field_name}" — %{message}
