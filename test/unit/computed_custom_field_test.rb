@@ -25,7 +25,7 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     exception = assert_raise ActiveRecord::RecordInvalid do
       @field.save!
     end
-    assert_match /Formula is invalid/, exception.message
+    assert_match /Formula invalid/, exception.message
   end
 
   def test_bool_computation
