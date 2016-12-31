@@ -1,10 +1,10 @@
 module ComputedCustomField
   def self.patch_models
-    modeles = [
-      Issue, Project, User, TimeEntry, Version,
-      Group, TimeEntryActivity, IssuePriority, DocumentCategory
+    models = [
+      Enumeration, Group, Issue, Project,
+      TimeEntry, User, Version
     ]
-    modeles.each do |model|
+    models.each do |model|
       if model.included_modules
            .exclude?(ComputedCustomField::ModelPatch)
         model.send(:include, ComputedCustomField::ModelPatch)
