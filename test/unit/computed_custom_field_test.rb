@@ -47,8 +47,21 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     assert_equal 'MySQL', @issue.custom_field_value(field.id)
   end
 
+  def test_list_computation
+    field = field_with_list_format
+    field.update_attribute(:formula, '"Stable" if name == "eCookbook"')
+    project = Project.find 1
+    project.save
+    project.reload
+    assert_equal 'Stable', project.custom_field_value(field.id)
+  end
+
   def field_with_string_format
     computed_field 2
+  end
+
+  def field_with_list_format
+    computed_field 3
   end
 
   def field_with_float_format
