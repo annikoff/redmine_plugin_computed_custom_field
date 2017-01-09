@@ -1,5 +1,6 @@
 ### ComputedCustomField plugin for Redmine
 
+[![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
 
 ### Installation:
 

@@ -1,28 +1,45 @@
 language: ruby
 
-addons:
-  postgresql: "9.4"
-
 rvm:
-  - 2.2.2
+  - 2.1
 
 gemfile:
   - $REDMINE_PATH/Gemfile
 
 env:
-  - REDMINE_VER=3.3.1
-  - PLUGIN_NAME=computed_custom_field
-  - REDMINE_PATH=$HOME/redmine
+  - REDMINE_VER=3.3.2
+  - REDMINE_VER=3.1.7
+  - REDMINE_VER=3.0.7
+  - REDMINE_VER=2.6.10
+
+matrix:
+  include:
+  - rvm: 1.9.3
+    env: REDMINE_VER=2.5.3
+  - rvm: 1.8.7
+    env: REDMINE_VER=2.4.7
 
 before_install:
-  - git clone -b '$REDMINE_VER' --single-branch git@github.com:redmine/redmine.git $REDMINE_PATH
+  - export PLUGIN_NAME=computed_custom_field
+  - export REDMINE_PATH=$HOME/redmine
+  - git clone -b "$REDMINE_VER" --single-branch https://github.com/redmine/redmine.git $REDMINE_PATH
   - ln -s $TRAVIS_BUILD_DIR $REDMINE_PATH/plugins/$PLUGIN_NAME
   - cp config/database.yml.travis $REDMINE_PATH/config/database.yml
+  - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
+    echo "gem 'nokogiri', '= 1.6.1'" >> $REDMINE_PATH/Gemfile;
+    sed -i 's/.*"selenium-webdriver".*//' $REDMINE_PATH/Gemfile; fi
   - cd $REDMINE_PATH
+
+install:
+  - bundle install --without development
 
 before_script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+  - bundle exec rake redmine:plugins:migrate
 
 script:
   - bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME
+
+notifications:
+  email: false

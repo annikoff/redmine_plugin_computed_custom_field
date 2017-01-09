@@ -1,3 +1,3 @@
 test:
-  adapter: postgresql
+  adapter: sqlite3
   database: redmine

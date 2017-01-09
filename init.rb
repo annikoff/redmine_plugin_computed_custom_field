@@ -14,7 +14,7 @@ ActionDispatch::Callbacks.to_prepare do
   require_dependency 'computed_custom_field/hooks'
 end
 
-RedmineApp::Application.configure do
+RedmineApp::Application.config do
   config.after_initialize do
     ComputedCustomField.patch_models
   end
