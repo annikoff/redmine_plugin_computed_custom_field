@@ -28,6 +28,8 @@ before_install:
   - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
     echo "gem 'nokogiri', '= 1.6.1'" >> $REDMINE_PATH/Gemfile;
     sed -i 's/.*"selenium-webdriver".*//' $REDMINE_PATH/Gemfile; fi
+  - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
+    echo "gem 'i18n', '0.6.11'" >> $REDMINE_PATH/Gemfile; fi
   - cd $REDMINE_PATH
 
 install:
