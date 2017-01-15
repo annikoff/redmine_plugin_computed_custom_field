@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class ComputedCustomFieldTest < ComputedCustomFieldTestCase
   def setup
-    @issue = Issue.first
+    @issue = Issue.find 3
   end
 
   def test_valid_formulas
@@ -41,7 +41,6 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
   def test_string_computation
     field = field_with_string_format
     field.update_attribute(:formula, 'cfs[1]')
-    @issue.custom_field_values = { 1 => 'MySQL' }
     @issue.save
     @issue.reload
     assert_equal 'MySQL', @issue.custom_field_value(field.id)
