@@ -16,8 +16,6 @@ matrix:
   include:
   - rvm: 1.9.3
     env: REDMINE_VER=2.5.3
-  - rvm: 1.8.7
-    env: REDMINE_VER=2.4.7
 
 before_install:
   - export PLUGIN_NAME=computed_custom_field
@@ -28,9 +26,6 @@ before_install:
   - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
     echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile;
     sed -i 's/.*"selenium-webdriver".*//' $REDMINE_PATH/Gemfile; fi
-  - if [[ $(ruby --version | awk '{print $2}') < 1.9 ]]; then
-    echo "gem 'i18n', '0.6.11'" >> $REDMINE_PATH/Gemfile;
-    echo "gem 'rack-cache', '1.2'" >> $REDMINE_PATH/Gemfile; fi
   - cd $REDMINE_PATH
 
 install:
