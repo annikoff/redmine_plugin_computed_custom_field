@@ -1,6 +1,6 @@
 ### ComputedCustomField plugin for Redmine
 
-[![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
+[![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=ruby-1.8.7)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
 
 ### Installation:
 
