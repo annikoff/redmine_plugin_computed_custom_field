@@ -5,8 +5,7 @@ module ComputedCustomField
       TimeEntry, User, Version
     ]
     models.each do |model|
-      if model.included_modules
-           .exclude?(ComputedCustomField::ModelPatch)
+      if model.included_modules.exclude?(ComputedCustomField::ModelPatch)
         model.send(:include, ComputedCustomField::ModelPatch)
       end
     end

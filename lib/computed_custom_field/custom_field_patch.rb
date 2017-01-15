@@ -1,10 +1,13 @@
 module ComputedCustomField
   module CustomFieldPatch
-    extend ActiveSupport::Concern
-
-    included do
-      before_save -> { self.editable = false; true }, if: :is_computed?
-      validates_with FormulaValidator, if: :is_computed?
+    def self.included(base)
+      base.class_eval do
+        before_save { |record|
+          record.editable = false if record.is_computed?
+          true
+        }
+        validates_with FormulaValidator, :if => :is_computed?
+      end
     end
   end
 end

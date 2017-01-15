@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class ComputedCustomFieldTest < ComputedCustomFieldTestCase
   def setup
-    @issue = Issue.first
+    @issue = Issue.find 3
   end
 
   def test_valid_formulas
@@ -22,17 +22,17 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     exception = assert_raise ActiveRecord::RecordInvalid do
       field.save!
     end
-    assert_match /Formula invalid/, exception.message
+    assert_match /Formula.*invalid.*divided by 0/, exception.message
   end
 
   def test_bool_computation
     field = field_with_bool_format
-    field.update_attributes(formula: '1 == 1')
+    field.update_attributes(:formula => '1 == 1')
     time_entry_activity = TimeEntryActivity.last
     time_entry_activity.save
     assert_equal '1', time_entry_activity.custom_field_value(field.id)
 
-    field.update_attributes(formula: '1 == 0')
+    field.update_attributes(:formula => '1 == 0')
     time_entry_activity.reload
     time_entry_activity.save
     assert_equal '0', time_entry_activity.custom_field_value(field.id)
@@ -41,7 +41,6 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
   def test_string_computation
     field = field_with_string_format
     field.update_attribute(:formula, 'cfs[1]')
-    @issue.custom_field_values = { 1 => 'MySQL' }
     @issue.save
     @issue.reload
     assert_equal 'MySQL', @issue.custom_field_value(field.id)
