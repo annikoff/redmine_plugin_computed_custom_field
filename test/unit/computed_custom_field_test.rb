@@ -1,8 +1,12 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class ComputedCustomFieldTest < ComputedCustomFieldTestCase
-  def setup
-    @issue = Issue.find 3
+  def issue
+    @issue ||= Issue.find 3
+  end
+
+  def project
+    @project ||= Project.find 1
   end
 
   def test_valid_formulas
@@ -41,19 +45,38 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
   def test_string_computation
     field = field_with_string_format
     field.update_attribute(:formula, 'cfs[1]')
-    @issue.save
-    @issue.reload
-    assert_equal 'MySQL', @issue.custom_field_value(field.id)
+    issue.save
+    assert_equal 'MySQL', issue.custom_field_value(field.id)
   end
 
   def test_list_computation
     field = field_with_list_format
     field.update_attribute(:formula, '"Stable" if name == "eCookbook"')
-    project = Project.find 1
     project.save
-    project.reload
     assert_equal 'Stable', project.custom_field_value(field.id)
   end
+
+  def test_multiple_list_computation
+    field = field_with_list_format
+    formula = '["Stable", "Beta"] if name == "eCookbook"'
+    field.update_attributes(formula: formula, multiple: true)
+    project.save
+    assert_equal ['Stable', 'Beta'], project.custom_field_value(field.id)
+  end
+
+  def test_float_computation
+    field = field_with_float_format
+    field.update_attribute(:formula, 'id/2.0')
+    issue.save
+    assert_equal '1.5', issue.custom_field_value(field.id)
+  end
+
+  # def test_int_computation
+  #   field = field_with_int_format
+  #   field.update_attribute(:formula, 'id/2.0')
+  #   issue.save
+  #   assert_equal '1', issue.custom_field_value(field.id)
+  # end
 
   def field_with_string_format
     computed_field 2
@@ -67,13 +90,22 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     computed_field 6
   end
 
+  def field_with_int_format
+    field = field_with_float_format.dup
+    field.name = 'Int field'
+    field.field_format = 'int'
+    field.trackers << Tracker.find(1)
+    field.save
+    field
+  end
+
   def field_with_bool_format
     computed_field 7
   end
 
   def computed_field(id)
     field = CustomField.find id
-    field.is_computed = true
+    field.update_attribute(:is_computed, true)
     field
   end
 end
