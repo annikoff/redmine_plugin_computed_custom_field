@@ -4,6 +4,7 @@ module ComputedCustomField
 
     included do
       before_save -> { self.editable = false; true }, if: :is_computed?
+      before_save -> { self.formula ||= '' }, if: :is_computed?
       validates_with FormulaValidator, if: :is_computed?
     end
   end
