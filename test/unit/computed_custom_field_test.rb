@@ -71,12 +71,26 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     assert_equal '1.5', issue.custom_field_value(field.id)
   end
 
-  # def test_int_computation
-  #   field = field_with_int_format
-  #   field.update_attribute(:formula, 'id/2.0')
-  #   issue.save
-  #   assert_equal '1', issue.custom_field_value(field.id)
-  # end
+  def test_int_computation
+    field = field_with_int_format
+    field.update_attribute(:formula, 'id/2.0')
+    issue.save
+    assert_equal '1', issue.custom_field_value(field.id)
+  end
+
+  def test_date_computation
+    field = field_with_date_format
+    field.update_attribute(:formula, 'Date.new(2017, 1, 18)')
+    issue.save
+    assert_equal '2017-01-18', issue.custom_field_value(field.id)
+  end
+
+  def test_user_computation
+    field = field_with_user_format
+    field.update_attribute(:formula, 'assigned_to')
+    issue.save
+    assert_equal '3', issue.custom_field_value(field.id)
+  end
 
   def field_with_string_format
     computed_field 2
@@ -94,13 +108,26 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     field = field_with_float_format.dup
     field.name = 'Int field'
     field.field_format = 'int'
-    field.trackers << Tracker.find(1)
     field.save
+    field.trackers << Tracker.find(1)
     field
   end
 
   def field_with_bool_format
     computed_field 7
+  end
+
+  def field_with_date_format
+    computed_field 8
+  end
+
+  def field_with_user_format
+    field = field_with_float_format.dup
+    field.name = 'User field'
+    field.field_format = 'user'
+    field.save
+    field.trackers << Tracker.find(1)
+    field
   end
 
   def computed_field(id)

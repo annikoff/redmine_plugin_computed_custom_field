@@ -18,16 +18,16 @@ module ComputedCustomField
     def eval_computed_field(custom_field)
       cfs = parse_computed_field_formula custom_field.formula
       result = eval custom_field.formula
-      if custom_field.field_format == 'bool'
-        result = case result
-                 when true, 't'
-                   '1'
-                 when false, 'f'
-                   '0'
-                 else
-                   result
-                 end
-      end
+      result = case custom_field.field_format
+               when 'bool'
+                 result.is_a?(TrueClass) ? '1' : '0'
+               when 'int'
+                 result.to_i
+               when 'user'
+                 result.try(:id) || result
+               else
+                 result
+               end
       self.custom_field_values = { custom_field.id => result }
     rescue StandardError, SyntaxError => e
       self.errors.add :base, l(:error_while_formula_computing,
