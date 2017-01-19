@@ -92,6 +92,14 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     assert_equal '3', issue.custom_field_value(field.id)
   end
 
+  def test_multiple_user_computation
+    field = field_with_user_format
+    formula = '[assigned_to, author_id]'
+    field.update_attributes(formula: formula, multiple: true)
+    issue.save
+    assert_equal ['3', '2'], issue.custom_field_value(field.id)
+  end
+
   def field_with_string_format
     computed_field 2
   end
