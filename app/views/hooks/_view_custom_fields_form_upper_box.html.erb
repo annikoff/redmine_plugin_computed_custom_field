@@ -1,2 +1,23 @@
-<p><%= form.check_box :is_computed %></p>
-<p><%= form.text_area :formula, :rows => 7 %></p>
+<% if custom_field.new_record? || custom_field.is_computed? %>
+  <p><%= form.check_box :is_computed, :disabled => !custom_field.new_record? %></p>
+  <p><%= form.text_area :formula, :rows => 7 %></p>
+  <p>
+    <% cfs = CustomField.where(type: custom_field.type)
+        .where('custom_fields.id != ?', custom_field.id || 0) %>
+    <%= label_tag l(:label_available_custom_fields) %>
+    <%= select_tag '',
+                   options_from_collection_for_select(cfs, 'id', 'name'),
+                   size: 5, multiple: true, id: 'select_for_formula' %>
+  </p>
+
+  <script type="text/javascript">
+      (function() {
+          $("#select_for_formula").dblclick(function(e) {
+              var formula = $("#custom_field_formula");
+              $(this).find("option:selected").each(function() {
+                  formula.val(formula.val() + 'cfs[' + $(this).val() + ']');
+              });
+          });
+      }())
+  </script>
+<% end %>
