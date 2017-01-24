@@ -49,7 +49,7 @@ module ComputedCustomField
       when 'int'
         value.to_i
       else
-        value.try(:id) || value.to_s
+        value.respond_to?(:id) ? value.id : value.to_s
       end
     end
   end
