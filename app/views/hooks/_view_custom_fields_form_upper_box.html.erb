@@ -1,5 +1,7 @@
 <% if custom_field.new_record? || custom_field.is_computed? %>
-  <p><%= form.check_box :is_computed, :disabled => !custom_field.new_record? %></p>
+  <p><%= form.check_box :is_computed,
+                        data: { enables: '#custom_field_formula, #select_for_formula' },
+                        disabled: !custom_field.new_record? %></p>
   <p><%= form.text_area :formula, :rows => 7 %></p>
   <p>
     <% cfs = CustomField.where(type: custom_field.type)
