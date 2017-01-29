@@ -1,10 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../test/test_helper')
+require File.expand_path('../fixtures_helper', __FILE__)
 
 class ComputedCustomFieldTestCase < ActiveSupport::TestCase
-  fixtures :custom_fields, :issues, :trackers,
-           :projects, :custom_fields_trackers,
-           :time_entries, :enumerations, :custom_values,
-           :issue_statuses, :users
+  include FixturesHelper
+  fixtures fixtures_list
 
   def issue
     @issue ||= Issue.find 3

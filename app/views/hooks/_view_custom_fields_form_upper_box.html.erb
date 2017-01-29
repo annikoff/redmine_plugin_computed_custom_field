@@ -1,6 +1,6 @@
 <% if custom_field.new_record? || custom_field.is_computed? %>
   <p><%= form.check_box :is_computed,
-                        data: { enables: '#custom_field_formula, #select_for_formula' },
+                        data: { enables: '#custom_field_formula, #available_cfs' },
                         disabled: !custom_field.new_record? %></p>
   <p><%= form.text_area :formula, :rows => 7 %></p>
   <p>
@@ -9,12 +9,12 @@
     <%= label_tag l(:label_available_custom_fields) %>
     <%= select_tag '',
                    options_from_collection_for_select(cfs, 'id', 'name'),
-                   size: 5, multiple: true, id: 'select_for_formula' %>
+                   size: 5, multiple: true, id: 'available_cfs' %>
   </p>
 
   <script type="text/javascript">
       (function() {
-          $("#select_for_formula").dblclick(function(e) {
+          $("#available_cfs").dblclick(function(e) {
               var formula = $("#custom_field_formula");
               $(this).find("option:selected").each(function() {
                   formula.val(formula.val() + 'cfs[' + $(this).val() + ']');
