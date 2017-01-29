@@ -2,8 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test/test_helper')
 require File.expand_path('../fixtures_helper', __FILE__)
 
 class ComputedCustomFieldTestCase < ActiveSupport::TestCase
-  include FixturesHelper
-  fixtures fixtures_list
+  fixtures FixturesHelper::fixtures
 
   def issue
     @issue ||= Issue.find 3

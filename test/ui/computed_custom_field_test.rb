@@ -2,8 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../../test/ui/base')
 require File.expand_path('../../fixtures_helper', __FILE__)
 
 class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
-  include FixturesHelper
-  fixtures fixtures_list
+  fixtures FixturesHelper::fixtures
 
   def setup
     log_user 'admin', 'admin'
