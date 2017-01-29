@@ -25,8 +25,11 @@ before_install:
   - cp config/database.yml.travis $REDMINE_PATH/config/database.yml
   - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
     echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile;
-    sed -i 's/.*"selenium-webdriver".*//' $REDMINE_PATH/Gemfile; fi
+    sed -r 's/("selenium-webdriver")/\1, "= 2.40.0"/' $REDMINE_PATH/Gemfile; fi
   - cd $REDMINE_PATH
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - phantomjs --webdriver 4444
 
 install:
   - bundle install --without development
@@ -38,6 +41,7 @@ before_script:
 
 script:
   - bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME
+  - bundle exec rake redmine:plugins:test:ui NAME=$PLUGIN_NAME
 
 notifications:
   email: false
