@@ -25,7 +25,7 @@ before_install:
   - cp config/database.yml.travis $REDMINE_PATH/config/database.yml
   - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
     echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile;
-    sed -r 's/("selenium-webdriver")/\1, "= 2.40.0"/' $REDMINE_PATH/Gemfile; fi
+    sed -ri 's/("selenium-webdriver")/\1, "= 2.53.4"/' $REDMINE_PATH/Gemfile; fi
   - cd $REDMINE_PATH
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
