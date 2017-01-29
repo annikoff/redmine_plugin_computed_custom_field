@@ -47,8 +47,6 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
 
   def test_string_computation
     field = field_with_string_format
-    p '####'
-    p field
     field.update_attribute(:formula, 'cfs[1]')
     issue.save
     assert_equal 'MySQL', issue.custom_field_value(field.id)

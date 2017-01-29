@@ -45,15 +45,19 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
   end
 
   def test_create_computed_custom_field
+    formula = '"text"'
     visit new_custom_field_path type: 'IssueCustomField'
     page.fill_in('Name', with: 'Computed')
     is_computed_element.click
-    page.fill_in('Formula', with: '"test"')
+    page.fill_in('Formula', with: formula)
     click_button 'Save'
+    assert page.has_text?('Successful creation')
 
-    assert_equal edit_custom_field_path(CustomField.last),
-                 URI.parse(current_url).request_uri
+    visit edit_custom_field_path(CustomField.last)
+    assert_equal formula, formula_element.value
     assert is_computed_element.disabled?
+    refute formula_element.disabled?
+    refute available_cfs_element.disabled?
   end
 
   def test_available_cfs
