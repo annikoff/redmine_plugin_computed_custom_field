@@ -1,9 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../../test/ui/base')
 
 class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
-  fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,
-           :trackers, :projects_trackers, :enabled_modules,
-           :custom_fields, :custom_values, :custom_fields_trackers
+  fixtures :custom_fields, :issues, :trackers,
+           :projects, :custom_fields_trackers,
+           :time_entries, :enumerations, :custom_values,
+           :issue_statuses, :users
+
   def setup
     log_user 'admin', 'admin'
   end
