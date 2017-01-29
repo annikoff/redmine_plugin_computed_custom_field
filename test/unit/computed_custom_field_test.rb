@@ -47,6 +47,8 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
 
   def test_string_computation
     field = field_with_string_format
+    p '####'
+    p field
     field.update_attribute(:formula, 'cfs[1]')
     issue.save
     assert_equal 'MySQL', issue.custom_field_value(field.id)
@@ -101,5 +103,29 @@ class ComputedCustomFieldTest < ComputedCustomFieldTestCase
     field.update_attributes(formula: formula, multiple: true)
     issue.save
     assert_equal ['3', '2'], issue.custom_field_value(field.id)
+  end
+
+  def test_computed_custom_field_callbacks
+    field = CustomField.find(1).dup
+    field.name = 'Test field'
+
+    assert_equal nil, field.formula
+    assert field.editable?
+    refute field.is_computed?
+
+    assert field.is_computed = true
+    assert field.save
+
+    refute field.editable?
+    assert field.is_computed?
+    assert_equal '', field.formula
+
+    assert field.update_attributes(is_computed: false,
+                                   editable: true, formula: nil)
+    field.reload
+
+    refute field.editable?
+    assert field.is_computed?
+    assert_equal '', field.formula
   end
 end

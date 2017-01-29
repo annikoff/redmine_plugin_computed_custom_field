@@ -13,6 +13,10 @@ class ComputedCustomFieldTestCase < ActiveSupport::TestCase
     @project ||= Project.find 1
   end
 
+  def tracker
+    Tracker.find(1)
+  end
+
   def field_with_string_format
     computed_field 2
   end
@@ -29,8 +33,8 @@ class ComputedCustomFieldTestCase < ActiveSupport::TestCase
     field = field_with_float_format.dup
     field.name = 'Int field'
     field.field_format = 'int'
+    field.trackers << tracker
     field.save
-    field.trackers << Tracker.find(1)
     field
   end
 
@@ -46,14 +50,19 @@ class ComputedCustomFieldTestCase < ActiveSupport::TestCase
     field = field_with_float_format.dup
     field.name = 'User field'
     field.field_format = 'user'
+    field.trackers << tracker
     field.save
-    field.trackers << Tracker.find(1)
     field
   end
 
   def computed_field(id)
-    field = CustomField.find id
-    field.update_attribute(:is_computed, true)
+    field = CustomField.find(id).dup
+    field.name = "Computed field #{field.field_format}"
+    field.is_computed = true
+    field.save
+    if field.is_a? IssueCustomField
+      field.trackers << tracker
+    end
     field
   end
 end
