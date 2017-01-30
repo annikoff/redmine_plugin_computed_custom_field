@@ -63,9 +63,8 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
     visit new_custom_field_path type: 'IssueCustomField'
 
     is_computed_element.click
-    available_cfs_element.double_click
-
     if Redmine::VERSION.to_s > '2.5'
+      available_cfs_element.double_click
       assert_equal 'cfs[6]', formula_element.value
     end
     assert_equal IssueCustomField.all.size,
