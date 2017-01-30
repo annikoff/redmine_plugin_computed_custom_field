@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../../test/ui/base')
 require File.expand_path('../../fixtures_helper', __FILE__)
 
 class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
-  fixtures FixturesHelper::fixtures
+  fixtures FixturesHelper.fixtures
 
   def setup
     log_user 'admin', 'admin'
@@ -35,7 +35,6 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
     assert available_cfs_element.disabled?
   end
 
-
   def test_common_custom_field_has_no_computed_fields
     visit edit_custom_field_path id: 1
 
@@ -66,7 +65,9 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
     is_computed_element.click
     available_cfs_element.double_click
 
-    assert_equal 'cfs[6]', formula_element.value
+    if Redmine::VERSION.to_s > '2.5'
+      assert_equal 'cfs[6]', formula_element.value
+    end
     assert_equal IssueCustomField.all.size,
                  page.all('#available_cfs option').size
   end
@@ -76,11 +77,11 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
   def is_computed_element
     page.first('#custom_field_is_computed')
   end
-  
+
   def formula_element
     page.first('#custom_field_formula')
   end
-  
+
   def available_cfs_element
     page.first('#available_cfs')
   end

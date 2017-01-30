@@ -15,6 +15,7 @@ module ComputedCustomField
       end
     end
 
+    # rubocop:disable Lint/UselessAssignment, Security/Eval
     def eval_computed_field(custom_field)
       cfs = parse_computed_field_formula custom_field.formula
       value = eval custom_field.formula
@@ -22,19 +23,18 @@ module ComputedCustomField
         custom_field.id => prepare_computed_value(custom_field, value)
       }
     rescue StandardError, SyntaxError => e
-      self.errors.add :base, l(:error_while_formula_computing,
-                               custom_field_name: custom_field.name,
-                               message: e.message)
+      errors.add :base, l(:error_while_formula_computing,
+                          custom_field_name: custom_field.name,
+                          message: e.message)
     end
 
     def parse_computed_field_formula(formula)
       @grouped_cfvs ||= custom_field_values
-                          .group_by { |cfv| cfv.custom_field.id }
+                        .group_by { |cfv| cfv.custom_field.id }
       cf_ids = formula.scan(/cfs\[(\d+)\]/).flatten.map(&:to_i)
-      cf_ids.inject({}) do |hash, cf_id|
+      cf_ids.each_with_object({}) do |cf_id, hash|
         cfv = @grouped_cfvs[cf_id].first
         hash[cf_id] = cfv ? cfv.custom_field.cast_value(cfv.value) : nil
-        hash
       end
     end
 

@@ -3,7 +3,10 @@ module ComputedCustomField
     extend ActiveSupport::Concern
 
     included do
-      before_save -> { self.editable = false; true }, if: :is_computed?
+      before_save lambda {
+        self.editable = false
+        true
+      }, if: :is_computed?
       before_validation -> { self.formula ||= '' }, if: :is_computed?
       validates_with FormulaValidator, if: :is_computed?
     end
@@ -15,6 +18,7 @@ module ComputedCustomField
   end
 end
 
-unless CustomField.included_modules.include?(ComputedCustomField::CustomFieldPatch)
+unless CustomField.included_modules
+                  .include?(ComputedCustomField::CustomFieldPatch)
   CustomField.send(:include, ComputedCustomField::CustomFieldPatch)
 end

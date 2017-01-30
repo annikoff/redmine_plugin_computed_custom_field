@@ -1,0 +1,23 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 25
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PredicateName:
+  Enabled: false

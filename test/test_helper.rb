@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test/test_helper')
 require File.expand_path('../fixtures_helper', __FILE__)
 
 class ComputedCustomFieldTestCase < ActiveSupport::TestCase
-  fixtures FixturesHelper::fixtures
+  fixtures FixturesHelper.fixtures
 
   def issue
     @issue ||= Issue.find 3
@@ -14,6 +14,10 @@ class ComputedCustomFieldTestCase < ActiveSupport::TestCase
 
   def tracker
     Tracker.find(1)
+  end
+
+  def time_entry_activity
+    @time_entry_activity ||= TimeEntryActivity.last
   end
 
   def field_with_string_format
@@ -59,9 +63,7 @@ class ComputedCustomFieldTestCase < ActiveSupport::TestCase
     field.name = "Computed field #{field.field_format}"
     field.is_computed = true
     field.save
-    if field.is_a? IssueCustomField
-      field.trackers << tracker
-    end
+    field.trackers << tracker if field.is_a? IssueCustomField
     field
   end
 end

@@ -4,7 +4,7 @@ Redmine::Plugin.register :computed_custom_field do
   url 'https://github.com/annikoff/redmine_plugin_computed_custom_field'
   description ''
   version '0.1.0'
-  settings :default => {}
+  settings default: {}
 end
 
 ActionDispatch::Callbacks.to_prepare do
