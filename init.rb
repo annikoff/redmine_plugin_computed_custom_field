@@ -11,6 +11,7 @@ ActionDispatch::Callbacks.to_prepare do
   require_dependency 'computed_custom_field/computed_custom_field'
   require_dependency 'computed_custom_field/custom_field_patch'
   require_dependency 'computed_custom_field/model_patch'
+  require_dependency 'computed_custom_field/issue_patch'
   require_dependency 'computed_custom_field/hooks'
 end
 
