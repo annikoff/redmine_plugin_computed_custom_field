@@ -15,5 +15,5 @@ module ComputedCustomField
 end
 
 unless Issue.included_modules.include?(ComputedCustomField::IssuePatch)
-  Issue.include ComputedCustomField::IssuePatch
+  Issue.send :include, ComputedCustomField::IssuePatch
 end

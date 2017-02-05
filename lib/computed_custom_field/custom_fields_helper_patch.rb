@@ -13,5 +13,5 @@ end
 
 unless CustomFieldsHelper.included_modules
                          .include?(ComputedCustomField::CustomFieldsHelperPatch)
-  CustomFieldsHelper.include ComputedCustomField::CustomFieldsHelperPatch
+  CustomFieldsHelper.send :include, ComputedCustomField::CustomFieldsHelperPatch
 end

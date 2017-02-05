@@ -7,7 +7,7 @@ module ComputedCustomField
     models.each do |model|
       if model.included_modules
               .exclude?(ComputedCustomField::ModelPatch)
-        model.include ComputedCustomField::ModelPatch
+        model.send :include, ComputedCustomField::ModelPatch
       end
     end
   end
