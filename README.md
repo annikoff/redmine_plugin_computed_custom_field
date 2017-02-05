@@ -6,6 +6,8 @@
 ### Important information
 
 This is new version of the plugin. Since version 1.0.0 it is not compatible with previous versions.
+The following constructions in formula `%{cf_id}` does not work anymore, 
+instead use this `cfs[cf_id]` (thanks to [ecanuto](https://github.com/ecanuto) for the idea).
 If any older version of the plugin already installed on your system, please check out migration section.
 
 ### Description:
@@ -37,7 +39,10 @@ rake redmine:plugins:migrate
 ```
 
 ### Migration:
-TODO
+- Navigate to plugin folder
+- Run `git pull`
+- Run `rake redmine:plugins:migrate`
+- In computed CF's formulas replace `%{cf_id}` constructions by `cfs[cf_id]` 
 
 ### Examples:
 ```ruby
