@@ -20,5 +20,5 @@ end
 
 unless CustomField.included_modules
                   .include?(ComputedCustomField::CustomFieldPatch)
-  CustomField.send(:include, ComputedCustomField::CustomFieldPatch)
+  CustomField.include ComputedCustomField::CustomFieldPatch
 end
