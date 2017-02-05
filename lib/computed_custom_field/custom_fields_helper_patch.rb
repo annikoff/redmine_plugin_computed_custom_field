@@ -2,7 +2,7 @@ module ComputedCustomField
   module CustomFieldsHelperPatch
     def render_computed_custom_fields_select(custom_field)
       cfs = CustomField.where(type: custom_field.type)
-            .where('custom_fields.id != ?', custom_field.id || 0)
+                       .where('custom_fields.id != ?', custom_field.id || 0)
 
       select_tag '',
                  options_from_collection_for_select(cfs, 'id', 'name'),
@@ -12,6 +12,6 @@ module ComputedCustomField
 end
 
 unless CustomFieldsHelper.included_modules
-       .include?(ComputedCustomField::CustomFieldsHelperPatch)
+                         .include?(ComputedCustomField::CustomFieldsHelperPatch)
   CustomFieldsHelper.include ComputedCustomField::CustomFieldsHelperPatch
 end
