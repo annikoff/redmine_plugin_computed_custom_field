@@ -11,6 +11,8 @@ In formula constructions like `cfs[cf_id]` are replaced by IDs of custom fields.
 Valid formula is a valid Ruby code executed when customized object is updated. 
 To put a field ID in the formula, double-click on an item in the list of available fields.
 
+![ComputedCustomField plugin for Redmine](https://raw.githubusercontent.com/annikoff/images/master/redmine_plugin_computed_custom_field_v_1_0_0.png)
+
 ### Important information
 
 This is a new version of the plugin. Since version 1.0.0 it is not compatible with previous versions.
