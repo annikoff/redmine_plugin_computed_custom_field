@@ -21,3 +21,6 @@ Style/FrozenStringLiteralComment:
 
 Style/PredicateName:
   Enabled: false
+
+Lint/RescueException:
+  Enabled: false

@@ -1,11 +1,10 @@
 class ConvertCustomFields < ActiveRecord::Migration
   def up
-    CustomField.all.each do |custom_field|
-      if custom_field.format_store[:computed]
-        sql = "UPDATE #{CustomField.table_name} SET "
-        sql << "is_computed = 1 WHERE id = #{custom_field.id}"
-        ActiveRecord::Base.connection.execute(sql)
-      end
-    end
+    fields = CustomField.all.select { |cf| cf.format_store[:computed] }
+    return if fields.blank?
+    ids = fields.map(&:id).join(',')
+    sql = "UPDATE #{CustomField.table_name} SET "
+    sql << "is_computed = '1' WHERE id IN (#{ids})"
+    ActiveRecord::Base.connection.execute(sql)
   end
 end

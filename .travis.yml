@@ -3,10 +3,6 @@ language: ruby
 rvm:
   - 2.1
 
-apt:
-  packages:
-    - dos2unix
-
 gemfile:
   - $REDMINE_PATH/Gemfile
 
@@ -34,7 +30,6 @@ before_install:
   - cd $REDMINE_PATH
   - if [[ $REDMINE_VER < '3.2-stable' ]]; then
     echo "$(curl http://www.redmine.org/projects/redmine/repository/revisions/14891/diff/trunk/lib/tasks/redmine.rake?format=diff)" > redmine.rake.patch;
-    dos2unix lib/tasks/redmine.rake;
     patch lib/tasks/redmine.rake redmine.rake.patch; fi
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start

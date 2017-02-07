@@ -12,7 +12,7 @@ module MethodsHelper
   end
 
   def field_with_list_format
-    computed_field 'list', possible_values: %w{Stable Beta Alpha}
+    computed_field 'list', possible_values: %w(Stable Beta Alpha)
   end
 
   def field_with_float_format

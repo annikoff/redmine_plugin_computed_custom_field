@@ -12,9 +12,8 @@ module ComputedCustomField
         eval record.formula
       end
       object.validate_record record
-    rescue StandardError => e
-      record.errors[:formula] << :invalid
-      record.errors[:base] << e.message
+    rescue Exception => e
+      record.errors[:formula] << e.message
     end
   end
 end
