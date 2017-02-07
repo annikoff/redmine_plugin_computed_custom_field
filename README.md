@@ -3,13 +3,6 @@
 [![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
 [![Code Climate](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field/badges/gpa.svg)](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field)
 
-### Important information
-
-This is new version of the plugin. Since version 1.0.0 it is not compatible with previous versions.
-The following constructions in formula `%{cf_id}` does not work anymore, 
-instead use this `cfs[cf_id]` (thanks to [ecanuto](https://github.com/ecanuto) for the idea).
-If any older version of the plugin already installed on your system, please check out migration section.
-
 ### Description:
 
 This plugin provides a possibility to create a computed custom field. 
@@ -17,6 +10,13 @@ The value of computed field can be set by formula.
 In formula constructions like `cfs[cf_id]` are replaced by IDs of custom fields. 
 Valid formula is a valid Ruby code executed when customized object is updated. 
 To put a field ID in the formula, double-click on an item in the list of available fields.
+
+### Important information
+
+This is a new version of the plugin. Since version 1.0.0 it is not compatible with previous versions.
+The following constructions in formula `%{cf_id}` are no longer supported. 
+Instead use `cfs[cf_id]` (thanks to [ecanuto](https://github.com/ecanuto) for the idea).
+If you need to upgrade from older versions, please check out migration section.
 
 > ### Notes:
 > - cfs[cf_id] &mdash; must be an ID of existing custom field
@@ -28,7 +28,11 @@ To put a field ID in the formula, double-click on an item in the list of availab
 
 Clone from GitHub
 ```sh
+# Latest version
 git clone https://github.com/annikoff/redmine_plugin_computed_custom_field.git computed_custom_field
+
+# Version that support Ruby 1.8.7
+git clone -b "ruby-1.8.7" --single-branch https://github.com/annikoff/redmine_plugin_computed_custom_field.git computed_custom_field
 ```
 
 Or download [ZIP-archive](https://github.com/annikoff/redmine_plugin_computed_custom_field/archive/master.zip) and extract it into "computed_custom_field" directory.
@@ -43,6 +47,10 @@ rake redmine:plugins:migrate
 - Run `git pull`
 - Run `rake redmine:plugins:migrate`
 - In computed CF's formulas replace `%{cf_id}` constructions by `cfs[cf_id]` 
+
+### Compatibility
+
+The plugins supports the following Redmine versions: 3.3.x, 3.2.x, 3.1.x, 3.0.x, 2.6.x, 2.5.x, 2.4.x
 
 ### Examples:
 ```ruby
