@@ -1,64 +1,49 @@
 module MethodsHelper
   def issue
-    @issue ||= Issue.find 3
+    Issue.find 3
   end
 
   def project
-    @project ||= Project.find 1
-  end
-
-  def tracker
-    Tracker.find(1)
-  end
-
-  def time_entry_activity
-    @time_entry_activity ||= TimeEntryActivity.last
+    Project.find 1
   end
 
   def field_with_string_format
-    computed_field 2
+    computed_field 'string'
   end
 
   def field_with_list_format
-    computed_field 3
+    computed_field 'list', possible_values: %w{Stable Beta Alpha}
   end
 
   def field_with_float_format
-    computed_field 6
+    computed_field 'float'
   end
 
   def field_with_int_format
-    field = field_with_float_format.dup
-    field.name = 'Int field'
-    field.field_format = 'int'
-    field.trackers << tracker
-    field.save
-    field
+    computed_field 'int'
   end
 
   def field_with_bool_format
-    computed_field 7
+    computed_field 'bool'
   end
 
   def field_with_date_format
-    computed_field 8
+    computed_field 'date'
   end
 
   def field_with_user_format
-    field = field_with_float_format.dup
-    field.name = 'User field'
-    field.field_format = 'user'
-    field.trackers << tracker
-    field.save
-    field
+    computed_field 'user'
   end
 
-  def computed_field(id)
-    field = CustomField.find(id).dup
-    field.name = "Computed field #{field.field_format}"
-    field.is_computed = true
-    field.save
-    field.trackers << tracker if field.is_a? IssueCustomField
+  def field_with_link_format
+    computed_field 'link'
+  end
+
+  def computed_field(format, attributes = {})
+    params = attributes.merge(name: format, is_computed: true,
+                              field_format: format, is_for_all: true)
+    field = IssueCustomField.create params
+    field.trackers << Tracker.first if field.is_a? IssueCustomField
     field
   end
 end

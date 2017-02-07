@@ -24,13 +24,12 @@ class ModelPatchTest < ComputedCustomFieldTestCase
   def test_bool_computation
     field = field_with_bool_format
     field.update_attributes(formula: '1 == 1')
-    time_entry_activity.save
-    assert_equal '1', time_entry_activity.custom_field_value(field.id)
+    issue.save
+    assert_equal '1', issue.custom_field_value(field.id)
 
     field.update_attributes(formula: '1 == 0')
-    time_entry_activity.reload
-    time_entry_activity.save
-    assert_equal '0', time_entry_activity.custom_field_value(field.id)
+    issue.save
+    assert_equal '0', issue.custom_field_value(field.id)
   end
 
   def test_string_computation
@@ -42,17 +41,18 @@ class ModelPatchTest < ComputedCustomFieldTestCase
 
   def test_list_computation
     field = field_with_list_format
-    field.update_attribute(:formula, '"Stable" if name == "eCookbook"')
-    project.save
-    assert_equal 'Stable', project.custom_field_value(field.id)
+    formula = '"Stable" if id == 3'
+    field.update_attribute(:formula, formula)
+    issue.save
+    assert_equal 'Stable', issue.custom_field_value(field.id)
   end
 
   def test_multiple_list_computation
     field = field_with_list_format
-    formula = '["Stable", "Beta"] if name == "eCookbook"'
+    formula = '["Stable", "Beta"] if id == 3'
     field.update_attributes(formula: formula, multiple: true)
-    project.save
-    assert_equal %w(Stable Beta), project.custom_field_value(field.id)
+    issue.save
+    assert_equal %w(Stable Beta), issue.custom_field_value(field.id)
   end
 
   def test_float_computation
@@ -89,6 +89,14 @@ class ModelPatchTest < ComputedCustomFieldTestCase
     field.update_attributes(formula: formula, multiple: true)
     issue.save
     assert_equal %w(3 2), issue.custom_field_value(field.id)
+  end
+
+  def test_link_computation
+    return if Redmine::VERSION.to_s < '2.5'
+    field = field_with_link_format
+    field.update_attribute(:formula, '"http://example.com/"')
+    issue.save
+    assert_equal 'http://example.com/', issue.custom_field_value(field.id)
   end
 
   def test_computed_custom_field_callbacks
