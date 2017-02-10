@@ -1,6 +1,5 @@
 module ComputedCustomField
   class Hooks < Redmine::Hook::ViewListener
-    render_on :view_layouts_base_html_head, :partial => 'hooks/base_head'
     render_on :view_custom_fields_form_upper_box,
               :partial => 'hooks/view_custom_fields_form_upper_box'
   end

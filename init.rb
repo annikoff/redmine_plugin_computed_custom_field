@@ -3,14 +3,16 @@ Redmine::Plugin.register :computed_custom_field do
   author 'Yakov Annikov'
   url 'https://github.com/annikoff/redmine_plugin_computed_custom_field'
   description ''
-  version '0.1.0'
+  version '1.0.0'
   settings :default => {}
 end
 
 ActionDispatch::Callbacks.to_prepare do
   require_dependency 'computed_custom_field/computed_custom_field'
   require_dependency 'computed_custom_field/custom_field_patch'
+  require_dependency 'computed_custom_field/custom_fields_helper_patch'
   require_dependency 'computed_custom_field/model_patch'
+  require_dependency 'computed_custom_field/issue_patch'
   require_dependency 'computed_custom_field/hooks'
 end
 

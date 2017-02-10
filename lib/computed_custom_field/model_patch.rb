@@ -3,7 +3,7 @@ module ComputedCustomField
     def self.included(base)
       base.send(:include, InstanceMethods)
       base.class_eval do
-        before_save :eval_computed_fields
+        before_validation :eval_computed_fields
       end
     end
 
@@ -20,31 +20,38 @@ module ComputedCustomField
 
       def eval_computed_field(custom_field)
         cfs = parse_computed_field_formula custom_field.formula
-        result = eval custom_field.formula
-        if custom_field.field_format == 'bool'
-          result = case result
-                   when true, 't'
-                     '1'
-                   when false, 'f'
-                     '0'
-                   else
-                     result
-                   end
-        end
-        self.custom_field_values = { custom_field.id => result }
-      rescue StandardError, SyntaxError => e
-        self.errors.add :base, l(:error_while_formula_computing,
-                                 :custom_field_name => custom_field.name,
-                                 :message => e.message)
+        value = eval custom_field.formula
+        self.custom_field_values = {
+          custom_field.id => prepare_computed_value(custom_field, value)
+        }
+      rescue Exception => e
+        errors.add :base, l(:error_while_formula_computing,
+                            :custom_field_name => custom_field.name,
+                            :message => e.message)
       end
 
       def parse_computed_field_formula(formula)
-        @grouped_cfvs ||= custom_field_values.group_by { |cfv| cfv.custom_field.id }
+        @grouped_cfvs ||= custom_field_values
+                          .group_by { |cfv| cfv.custom_field.id }
         cf_ids = formula.scan(/cfs\[(\d+)\]/).flatten.map(&:to_i)
-        cf_ids.inject({}) do |hash, cf_id|
+        cf_ids.each_with_object({}) do |cf_id, hash|
           cfv = @grouped_cfvs[cf_id].first
           hash[cf_id] = cfv ? cfv.custom_field.cast_value(cfv.value) : nil
-          hash
+        end
+      end
+
+      def prepare_computed_value(custom_field, value)
+        if value.is_a?(Array)
+          return value.map { |v| prepare_computed_value(custom_field, v) }
+        end
+
+        case custom_field.field_format
+        when 'bool'
+          value.is_a?(TrueClass) ? '1' : '0'
+        when 'int'
+          value.to_i
+        else
+          value.respond_to?(:id) ? value.id : value.to_s
         end
       end
     end
