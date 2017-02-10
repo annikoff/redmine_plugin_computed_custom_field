@@ -31,8 +31,7 @@ module ComputedCustomField
       end
 
       def parse_computed_field_formula(formula)
-        @grouped_cfvs ||= custom_field_values
-                          .group_by { |cfv| cfv.custom_field.id }
+        @grouped_cfvs ||= custom_field_values.group_by { |cfv| cfv.custom_field.id }
         cf_ids = formula.scan(/cfs\[(\d+)\]/).flatten.map(&:to_i)
         cf_ids.each_with_object({}) do |cf_id, hash|
           cfv = @grouped_cfvs[cf_id].first
