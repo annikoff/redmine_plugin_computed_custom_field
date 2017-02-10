@@ -3,10 +3,6 @@ language: ruby
 rvm:
   - 1.8.7
 
-apt:
-  packages:
-    - dos2unix
-
 gemfile:
   - $REDMINE_PATH/Gemfile
 
@@ -23,7 +19,6 @@ before_install:
   - sed -ri 's/("selenium-webdriver")/\1, "= 2.40.0"/' $REDMINE_PATH/Gemfile
   - cd $REDMINE_PATH
   - echo "$(curl http://www.redmine.org/projects/redmine/repository/revisions/14891/diff/trunk/lib/tasks/redmine.rake?format=diff)" > redmine.rake.patch
-  - dos2unix lib/tasks/redmine.rake
   - patch lib/tasks/redmine.rake redmine.rake.patch
   - echo "gem 'i18n', '0.6.11'" >> $REDMINE_PATH/Gemfile
   - echo "gem 'rack-cache', '1.2'" >> $REDMINE_PATH/Gemfile
