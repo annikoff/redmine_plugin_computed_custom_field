@@ -15,11 +15,11 @@ class ModelPatchTest < ComputedCustomFieldTestCase
 
   def test_bool_computation
     field = field_with_bool_format
-    field.update_attributes(formula: '1 == 1')
+    field.update_attribute(:formula, '1 == 1')
     issue.save
     assert_equal '1', issue.custom_field_value(field.id)
 
-    field.update_attributes(formula: '1 == 0')
+    field.update_attribute(:formula, '1 == 0')
     issue.save
     assert_equal '0', issue.custom_field_value(field.id)
   end
