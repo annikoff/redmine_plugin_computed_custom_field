@@ -43,6 +43,7 @@ module ComputedCustomField
         if value.is_a?(Array)
           return value.map { |v| prepare_computed_value(custom_field, v) }
         end
+
         case custom_field.field_format
         when 'bool'
           value.is_a?(TrueClass) ? '1' : '0'
