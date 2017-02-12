@@ -8,9 +8,7 @@ class ModelPatchTest < ComputedCustomFieldTestCase
     exception = assert_raise ActiveRecord::RecordInvalid do
       issue.save!
     end
-    message = 'Validation failed: Error while formula computing in field ' \
-              "\"#{field.name}\" — divided by 0"
-    assert_equal message, exception.message
+    assert_match /"#{field.name}".*divided by 0/, exception.message
   end
 
   def test_bool_computation

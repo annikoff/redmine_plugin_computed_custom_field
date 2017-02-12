@@ -43,14 +43,13 @@ module ComputedCustomField
         if value.is_a?(Array)
           return value.map { |v| prepare_computed_value(custom_field, v) }
         end
-
         case custom_field.field_format
         when 'bool'
           value.is_a?(TrueClass) ? '1' : '0'
         when 'int'
-          value.to_i
+          value.to_i.to_s
         else
-          value.respond_to?(:id) ? value.id : value.to_s
+          value.is_a?(ActiveRecord::Base) ? value.id : value.to_s
         end
       end
     end

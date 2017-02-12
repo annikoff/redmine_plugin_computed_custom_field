@@ -26,7 +26,7 @@ class CustomFieldTest < ComputedCustomFieldTestCase
     field.name = 'Test field'
 
     assert_equal nil, field.formula
-    refute field.is_computed?
+    assert_equal false, field.is_computed?
     assert field.is_computed = true
 
     assert field.save

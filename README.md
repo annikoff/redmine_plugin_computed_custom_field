@@ -29,10 +29,6 @@ If you need to upgrade from older versions, please check out migration section.
 
 Clone from GitHub
 ```sh
-# Latest version
-git clone https://github.com/annikoff/redmine_plugin_computed_custom_field.git computed_custom_field
-
-# Version that support Ruby 1.8.7
 git clone -b "ruby-1.8.7" --single-branch https://github.com/annikoff/redmine_plugin_computed_custom_field.git computed_custom_field
 ```
 
