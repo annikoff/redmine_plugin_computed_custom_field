@@ -21,8 +21,7 @@ Plugin's changelog is available [here](CHANGELOG.md).
 ### Important information
 
 This is a new version of the plugin. Since version 1.0.0 it is not compatible with previous versions.
-The following constructions in formula `%{cf_id}` are no longer supported. 
-Instead use `cfs[cf_id]` (thanks to [ecanuto](https://github.com/ecanuto) for the idea).
+The following constructions in formula `%{cf_id}` are no longer supported. Instead use `cfs[cf_id]`.
 If you need to upgrade from older versions, please check out migration section.
 
 > ### Notes:
