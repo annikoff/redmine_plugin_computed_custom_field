@@ -1,0 +1,51 @@
+language: ruby
+
+rvm:
+  - 2.1
+
+gemfile:
+  - $REDMINE_PATH/Gemfile
+
+env:
+  - REDMINE_VER=3.3-stable
+  - REDMINE_VER=3.2-stable
+  - REDMINE_VER=3.1-stable
+  - REDMINE_VER=3.0-stable
+  - REDMINE_VER=2.6-stable
+
+matrix:
+  include:
+  - rvm: 1.9.3
+    env: REDMINE_VER=2.5-stable
+
+before_install:
+  - export PLUGIN_NAME=computed_custom_field
+  - export REDMINE_PATH=$HOME/redmine
+  - git clone -b "$REDMINE_VER" --single-branch https://github.com/redmine/redmine.git $REDMINE_PATH
+  - ln -s $TRAVIS_BUILD_DIR $REDMINE_PATH/plugins/$PLUGIN_NAME
+  - cp config/database.yml.travis $REDMINE_PATH/config/database.yml
+  - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
+    echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile;
+    sed -ri 's/("selenium-webdriver")/\1, "= 2.53.4"/' $REDMINE_PATH/Gemfile; fi
+  - cd $REDMINE_PATH
+  - if [[ $REDMINE_VER < '3.2-stable' ]]; then
+    echo "$(curl http://www.redmine.org/projects/redmine/repository/revisions/14891/diff/trunk/lib/tasks/redmine.rake?format=diff)" > redmine.rake.patch;
+    patch lib/tasks/redmine.rake redmine.rake.patch; fi
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - phantomjs --webdriver 4444 &
+
+install:
+  - bundle install --without development
+
+before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake redmine:plugins:migrate
+
+script:
+  - bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME
+  - bundle exec rake redmine:plugins:test:ui NAME=$PLUGIN_NAME
+
+notifications:
+  email: false

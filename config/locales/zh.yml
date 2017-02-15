@@ -1,7 +1,5 @@
 zh:
-  label_computed: 动态计算变量 
+  field_is_computed: 动态计算变量
   field_formula: 公式
-  label_output_format: 输出格式
-  field_datetime_format: 日期/时间格式
   label_available_custom_fields: 可用自定义字段
   error_while_formula_computing: 当公式使用字段："%{custom_field_name}" 计算时报错。错误信息：%{message}
