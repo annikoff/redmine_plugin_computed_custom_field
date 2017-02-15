@@ -1,11 +1,6 @@
 # Change Log
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/) 
-and this project adheres to [Semantic Versioning](http://semver.org/).
-
-## [Unreleased]
-## 1.0.0 - 
+## [1.0.0](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.0) - 2017-02-15
 ### Added
 - New formula constructions `cfs[cf_id]`. Thanks to [ecanuto](https://github.com/ecanuto) for the idea.
 - Tests.
@@ -22,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Old formula constructions `%{cf_id}`.
 - Output formats.
 
-## 0.0.8 - 2016-11-27
+## [0.0.8](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.8) - 2016-11-27
 ### Added
 - Error handling to prevent internal server errors. From [swiehr](https://github.com/swiehr).
 - zh  translation from [archonwang](https://github.com/archonwang).
@@ -33,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Link formatting.
 
-## 0.0.7 - 2016-08-29
+## [0.0.7](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.7) - 2016-08-29
 ### Added
 - Markdown link format support.
 - Grouping functionality for queries. From [plotterie](https://github.com/plotterie).
@@ -45,14 +40,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Typo in a custom field form. From [swiehr](https://github.com/swiehr).
 - Error when validating DateTime.
 
-## 0.0.6 - 2016-01-15
+## [0.0.6](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.6) - 2016-01-15
 ### Added
 - Totalable support for Redmine 3.x.
 
 ### Fixed
 - Error when trying to save iIssue from TimeEntry if Issue does not present.
 
-## 0.0.5 - 2015-12-21
+## [0.0.5](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.5) - 2015-12-21
 ### Added
 - Link output format.
 - pt-br translation from [Adriano Ceccarelli](https://github.com/aceccarelli).
@@ -64,7 +59,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Exclude Document class from list of classes for a patch.
 
-## 0.0.4 - 2015-10-22
+## [0.0.4](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.4) - 2015-10-22
 ### Added
 - Boolean and Percentage output formats.
 - TimeEntry callbacks to re-save Issue.
@@ -76,7 +71,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Bug when formula validation
 
-## 0.0.3 - 2015-09-23
+## [0.0.3](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.3) - 2015-09-23
 ### Added
 - String and Datetime output formats.
 - Query filter options.
@@ -84,7 +79,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Formula validation is evaluated in proper context.
 
-## 0.0.2 - 2015-09-20
+## [0.0.2](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.2) - 2015-09-20
 ### Added
 - Int and Float output formats.
 - en translation.
@@ -102,6 +97,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Conversion error when formula computation 
 
-## 0.0.1 - 2015-08-13
+## [0.0.1](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.1) - 2015-08-13
 ### Added
 - Base functionality.

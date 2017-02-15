@@ -48,8 +48,8 @@ rake redmine:plugins:migrate
 
 ### Migration:
 - Navigate to plugin folder.
-- Run `git pull`.
-- Run `rake redmine:plugins:migrate`.
+- Run `git pull`
+- Run `rake redmine:plugins:migrate`
 - In computed CF's formulas replace `%{cf_id}` constructions by `cfs[cf_id]`.
 
 ### Compatibility
