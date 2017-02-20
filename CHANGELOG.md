@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.1](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.0) - 2017-02-20
+### Fixed
+- Migration.
+
 ## [1.0.0](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.0) - 2017-02-15
 ### Added
 - New formula constructions `cfs[cf_id]`. Thanks to [ecanuto](https://github.com/ecanuto) for the idea.
