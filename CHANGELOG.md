@@ -1,6 +1,10 @@
 # Change Log
 
-## [1.0.1](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.0) - 2017-02-20
+## [1.0.2](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.2) - 2017-02-20
+### Fixed
+- Migration.
+
+## [1.0.1](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.1) - 2017-02-20
 ### Fixed
 - Migration.
 
