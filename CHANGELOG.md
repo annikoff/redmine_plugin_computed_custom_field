@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.3](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.3) - 2017-02-20
+### Added
+- An additional information for available fields list.
+
 ## [1.0.2](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.2) - 2017-02-20
 ### Fixed
 - Migration.
