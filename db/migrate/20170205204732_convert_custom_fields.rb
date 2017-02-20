@@ -12,7 +12,7 @@ class ConvertCustomFields < ActiveRecord::Migration
                end
       formula = field.format_store[:formula]
       sql = "UPDATE #{CustomField.table_name} SET "
-      sql << "is_computed = '1', field_format = '#{format}', formula = '#{formula}'  WHERE id = #{field.id}"
+      sql << "is_computed = '1', field_format = '#{format}', formula = '#{formula}' WHERE id = #{field.id}"
       ActiveRecord::Base.connection.execute(sql)
     end
   end
