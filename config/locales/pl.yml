@@ -1,0 +1,5 @@
+pl:
+  field_is_computed: Obliczany
+  field_formula: Formuła
+  label_available_custom_fields: Dostępne pola niestandardowe
+  error_while_formula_computing: Błąd podczas obliczania pola "%{custom_field_name}" — %{message}
