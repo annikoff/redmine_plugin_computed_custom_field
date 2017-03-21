@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.5](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.5) - 2017-03-21
+### Changed
+- PluginGemfile
+
 ## [1.0.4](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.4) - 2017-02-24
 ### Added
 - pl translation from [Ralph Gutkowski](https://github.com/rgtk).
