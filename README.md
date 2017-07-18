@@ -5,10 +5,10 @@
 
 ### Description:
 
-This plugin provides a possibility to create a computed custom field. 
-The value of computed field can be set by formula. 
-In formula constructions like `cfs[cf_id]` are replaced by IDs of custom fields. 
-Valid formula is a valid Ruby code executed when customized object is updated. 
+This plugin provides a possibility to create a computed custom field.
+The value of computed field can be set by formula.
+In formula constructions like `cfs[cf_id]` are replaced by IDs of custom fields.
+Valid formula is a valid Ruby code executed when customized object is updated.
 To put a field ID in the formula, double-click on an item in the list of available fields.
 
 
@@ -53,12 +53,12 @@ rake redmine:plugins:migrate
 
 ### Compatibility
 
-The plugins supports the following Redmine versions: 3.3.x, 3.2.x, 3.1.x, 3.0.x, 2.6.x, 2.5.x.
+The plugins supports the following Redmine versions: 3.4.x, 3.3.x, 3.2.x, 3.1.x, 3.0.x, 2.6.x, 2.5.x.
 
 ### Examples:
 ```ruby
 cfs[1]*2+cfs[2]
-# means 
+# means
 # custom_field_value(1) * 2 + custom_field_value(2)
 ```
 
@@ -75,12 +75,12 @@ end
 ```
 
 ```ruby
-# For IssueCustomField 
+# For IssueCustomField
 (self.estimated_hours || 0) * 2
 ```
 
 ```ruby
-# For ProjectCustomField 
+# For ProjectCustomField
 self.parent_id == 2
 ```
 

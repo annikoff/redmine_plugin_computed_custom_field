@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.6](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.6) - 2017-07-18
+### Added
+- Redmine 3.4.x support.
+
 ## [1.0.5](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.5) - 2017-03-21
 ### Changed
 - PluginGemfile
@@ -107,7 +111,7 @@
 - Formula validation.
 
 ### Changed
-- List of classes for a patch. 
+- List of classes for a patch.
 - README.
 - Excluded CF own id from available fields list.
 
@@ -115,7 +119,7 @@
 - Groups of custom fields from creation form.
 
 ### Fixed
-- Conversion error when formula computation 
+- Conversion error when formula computation
 
 ## [0.0.1](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v0.0.1) - 2015-08-13
 ### Added
