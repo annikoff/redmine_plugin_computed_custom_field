@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.6](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.6) - 2017-07-18
+## [1.0.6](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.6) - 2017-08-07
 ### Added
 - Redmine 3.4.x support.
 
