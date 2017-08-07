@@ -5,6 +5,7 @@ module ComputedCustomField
     included do
       before_validation -> { self.formula ||= '' }, if: :is_computed?
       validates_with FormulaValidator, if: :is_computed?
+      safe_attributes 'is_computed', 'formula' if CustomField.respond_to? 'safe_attributes'
     end
 
     def is_computed=(arg)
