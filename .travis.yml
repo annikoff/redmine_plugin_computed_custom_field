@@ -26,8 +26,8 @@ before_install:
   - ln -s $TRAVIS_BUILD_DIR $REDMINE_PATH/plugins/$PLUGIN_NAME
   - cp config/database.yml.travis $REDMINE_PATH/config/database.yml
   - if [[ $(ruby --version | awk '{print $2}') < 2.1 ]]; then
-    echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile;
-    sed -ri 's/("selenium-webdriver")/\1, "= 2.53.4"/' $REDMINE_PATH/Gemfile; fi
+    echo "gem 'nokogiri', '= 1.5.11'" >> $REDMINE_PATH/Gemfile; fi
+  - sed -ri 's/("selenium-webdriver")/\1, "= 2.53.4"/' $REDMINE_PATH/Gemfile
   - cd $REDMINE_PATH
   - if [[ $REDMINE_VER < '3.2-stable' ]]; then
     echo "$(curl http://www.redmine.org/projects/redmine/repository/revisions/14891/diff/trunk/lib/tasks/redmine.rake?format=diff)" > redmine.rake.patch;
