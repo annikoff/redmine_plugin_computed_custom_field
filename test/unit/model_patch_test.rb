@@ -41,10 +41,10 @@ class ModelPatchTest < ComputedCustomFieldTestCase
 
   def test_multiple_list_computation
     field = field_with_list_format
-    formula = '["Stable", "Beta"] if id == 3'
+    formula = "['Stable', 'Beta'] if id == #{issue.id}"
     field.update_attributes(formula: formula, multiple: true)
-    issue.save
-    assert_equal %w(Stable Beta), issue.custom_field_value(field.id)
+    issue.save!
+    assert_equal %w(Beta Stable), issue.custom_field_value(field.id).sort
   end
 
   def test_float_computation
@@ -79,7 +79,7 @@ class ModelPatchTest < ComputedCustomFieldTestCase
     field = field_with_user_format
     field.update_attributes(formula: '[assigned_to, author_id]', multiple: true)
     issue.save
-    assert_equal %w(3 2), issue.custom_field_value(field.id)
+    assert_equal %w(2 3), issue.custom_field_value(field.id).sort
   end
 
   def test_link_computation
