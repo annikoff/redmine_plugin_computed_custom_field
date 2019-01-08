@@ -3,7 +3,8 @@ module ComputedCustomField
     extend ActiveSupport::Concern
 
     included do
-      alias_method_chain :read_only_attribute_names, :computed_cf_ids
+      alias_method :read_only_attribute_names_without_computed_cf_ids, :read_only_attribute_names
+      alias_method :read_only_attribute_names, :read_only_attribute_names_with_computed_cf_ids
     end
 
     def read_only_attribute_names_with_computed_cf_ids(user = nil)

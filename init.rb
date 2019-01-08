@@ -7,7 +7,7 @@ Redmine::Plugin.register :computed_custom_field do
   settings default: {}
 end
 
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
   require_dependency 'computed_custom_field/computed_custom_field'
   require_dependency 'computed_custom_field/custom_field_patch'
   require_dependency 'computed_custom_field/custom_fields_helper_patch'
