@@ -3,6 +3,17 @@
 [![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
 [![Code Climate](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field/badges/gpa.svg)](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field)
 
+***
+
+## Disclaimer
+
+If you need help with a formula's code read [FAQ](https://github.com/annikoff/redmine_plugin_computed_custom_field/wiki/FAQ)
+and check out [existing issues](https://github.com/annikoff/redmine_plugin_computed_custom_field/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aquestion+) 
+or ask [Redmine community](https://www.redmine.org/projects/redmine/boards/2), please do not create issues, this kind of issues will be closed. 
+Please report only about bugs and feature requests. 
+
+***
+
 ### Description:
 
 This plugin provides a possibility to create a computed custom field.
