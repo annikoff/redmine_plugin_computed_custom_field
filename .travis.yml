@@ -41,7 +41,7 @@ before_script:
   - bundle exec rake redmine:plugins:migrate
 
 script:
-  - bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME
+  - bundle exec rake redmine:plugins:test:units NAME=$PLUGIN_NAME
   - bundle exec rake redmine:plugins:test:ui NAME=$PLUGIN_NAME
 
 notifications:
