@@ -11,7 +11,7 @@ module ComputedCustomField
           value: field.id,
           title: title
         }
-        content_tag_string(:option, title, html_attributes)
+        content_tag(:option, title, html_attributes)
       end.join("\n").html_safe
 
       select_tag '', options, size: 5,

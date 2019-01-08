@@ -1,4 +1,4 @@
-class ConvertCustomFields < ActiveRecord::Migration
+class ConvertCustomFields < PLUGIN_MIGRATION_CLASS
   def up
     fields = CustomField.where(field_format: 'computed')
     fields.each do |field|

@@ -1,8 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../../test/ui/base')
-require File.expand_path('../../fixtures_helper', __FILE__)
-require File.expand_path('../../methods_helper', __FILE__)
+require File.expand_path('../../test_helper', __FILE__)
 
-class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
+class ComputedCustomFieldTest < UI_TEST_CASE_CLASS
   fixtures FixturesHelper.fixtures
   include MethodsHelper
 
