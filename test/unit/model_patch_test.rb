@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require File.expand_path('../../test_helper', __FILE__)
 
 class ModelPatchTest < ComputedCustomFieldTestCase
@@ -9,7 +8,7 @@ class ModelPatchTest < ComputedCustomFieldTestCase
       issue.save!
     end
     message = 'Validation failed: Error while formula computing in field ' \
-              "\"#{field.name}\" — divided by 0"
+              "\"#{field.name}\": divided by 0"
     assert_equal message, exception.message
   end
 
@@ -44,7 +43,7 @@ class ModelPatchTest < ComputedCustomFieldTestCase
     formula = "['Stable', 'Beta'] if id == #{issue.id}"
     field.update_attributes(formula: formula, multiple: true)
     issue.save!
-    assert_equal %w(Beta Stable), issue.custom_field_value(field.id).sort
+    assert_equal %w[Beta Stable], issue.custom_field_value(field.id).sort
   end
 
   def test_float_computation
@@ -79,7 +78,7 @@ class ModelPatchTest < ComputedCustomFieldTestCase
     field = field_with_user_format
     field.update_attributes(formula: '[assigned_to, author_id]', multiple: true)
     issue.save
-    assert_equal %w(2 3), issue.custom_field_value(field.id).sort
+    assert_equal %w[2 3], issue.custom_field_value(field.id).sort
   end
 
   def test_link_computation

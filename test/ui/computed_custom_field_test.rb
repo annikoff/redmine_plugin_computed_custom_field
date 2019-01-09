@@ -66,8 +66,7 @@ class ComputedCustomFieldTest < UI_TEST_CASE_CLASS
       available_cfs_element.double_click
       assert_equal 'cfs[6]', formula_element.value
     end
-    assert_equal IssueCustomField.all.size,
-                 page.all('#available_cfs option').size
+    assert_equal IssueCustomField.all.size, page.all('#available_cfs option').size
   end
 
   private

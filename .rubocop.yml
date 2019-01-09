@@ -3,12 +3,18 @@ AllCops:
     - 'db/**/*'
   DisplayCopNames: true
   DisplayStyleGuide: true
+  TargetRubyVersion: 2.1
+
+Lint/RescueException:
+  Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
+  Exclude:
+    - 'test/**/*'
 
 Metrics/MethodLength:
-  Max: 25
+  Exclude:
+    - 'test/**/*'
 
 Metrics/LineLength:
   Max: 120
@@ -19,11 +25,14 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/ExpandPathArguments:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/PredicateName:
   Enabled: false
 
-Lint/RescueException:
+Style/SymbolArray:
   Enabled: false

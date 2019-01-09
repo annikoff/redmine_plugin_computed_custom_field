@@ -3,4 +3,4 @@ es:
   field_is_computed: Calculado
   field_formula: Fórmula
   label_available_custom_fields: Campos personalizados disponibles
-  error_while_formula_computing: Error al aplicar la fórmula al campo "%{custom_field_name}" — %{message}
+  error_while_formula_computing: 'Error al aplicar la fórmula al campo "%{custom_field_name}": %{message}'

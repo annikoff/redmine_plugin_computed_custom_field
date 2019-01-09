@@ -27,6 +27,7 @@ module ComputedCustomField
                           custom_field_name: custom_field.name,
                           message: e.message)
     end
+    # rubocop:enable Lint/UselessAssignment, Security/Eval
 
     def parse_computed_field_formula(formula)
       @grouped_cfvs ||= custom_field_values
@@ -39,9 +40,7 @@ module ComputedCustomField
     end
 
     def prepare_computed_value(custom_field, value)
-      if value.is_a?(Array)
-        return value.map { |v| prepare_computed_value(custom_field, v) }
-      end
+      return value.map { |v| prepare_computed_value(custom_field, v) } if value.is_a? Array
 
       result = case custom_field.field_format
                when 'bool'
