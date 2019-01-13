@@ -2,4 +2,4 @@ ru:
   field_is_computed: Вычисляемое
   field_formula: Формула
   label_available_custom_fields: Доступные поля
-  error_while_formula_computing: Ошибка вычисления по формуле в поле "%{custom_field_name}" — %{message}
+  error_while_formula_computing: 'Ошибка вычисления по формуле в поле "%{custom_field_name}": %{message}'

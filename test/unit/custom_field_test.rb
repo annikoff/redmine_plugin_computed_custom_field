@@ -25,16 +25,15 @@ class CustomFieldTest < ComputedCustomFieldTestCase
     field = CustomField.find(1).dup
     field.name = 'Test field'
 
-    assert_equal nil, field.formula
+    assert_nil field.formula
     refute field.is_computed?
-    assert field.is_computed = true
+    field.is_computed = true
 
     assert field.save
     assert field.is_computed?
     assert_equal '', field.formula
 
-    assert field.update_attributes(is_computed: false,
-                                   editable: true, formula: nil)
+    assert field.update_attributes(is_computed: false, editable: true, formula: nil)
 
     assert field.is_computed?
     assert_equal '', field.formula

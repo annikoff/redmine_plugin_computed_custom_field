@@ -1,5 +1,19 @@
 # Change Log
 
+## [1.0.7](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.7) - 2019-01-13
+### Added
+- Redmine 4.0.x support.
+
+### Changed
+- README.
+- Refactor code.
+
+### Fixed
+- Tests.
+
+### Removed
+- hound.yml
+
 ## [1.0.6](https://github.com/annikoff/redmine_plugin_computed_custom_field/releases/tag/v1.0.6) - 2017-08-07
 ### Added
 - Redmine 3.4.x support.

@@ -1,7 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../../test/ui/base')
-require File.expand_path('../../fixtures_helper', __FILE__)
+require File.expand_path('../../test_helper', __FILE__)
 
-class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
+class ComputedCustomFieldTest < UI_TEST_CASE_CLASS
   fixtures FixturesHelper.fixtures
 
   def setup
@@ -67,8 +66,7 @@ class Redmine::UiTest::ComputedCustomFieldTest < Redmine::UiTest::Base
       available_cfs_element.double_click
       assert_equal 'cfs[6]', formula_element.value
     end
-    assert_equal IssueCustomField.all.size,
-                 page.all('#available_cfs option').size
+    assert_equal IssueCustomField.all.size, page.all('#available_cfs option').size
   end
 
   private
