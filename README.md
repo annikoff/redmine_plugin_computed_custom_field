@@ -64,7 +64,7 @@ rake redmine:plugins:migrate
 
 ### Compatibility
 
-The plugins supports the following Redmine versions: 3.4.x, 3.3.x, 3.2.x, 3.1.x, 3.0.x, 2.6.x, 2.5.x.
+The plugins supports the following Redmine versions: 4.0.x, 3.4.x, 3.3.x, 3.2.x, 3.1.x, 3.0.x, 2.6.x, 2.5.x.
 
 ### Examples:
 ```ruby
@@ -98,6 +98,11 @@ self.parent_id == 2
 ```ruby
 # If format of Custom Field is Link
 "/projects/#{self.project_id.to_s}/issues/new?issue[subject]=Review+request+[##{self.id.to_s} #{self.subject}]&issue[tracker_id]=3"
+```
+
+```ruby
+# Retrieve a value from Key/value list custom field
+cfs[1].try(:id)
 ```
 
 To write formulas this documentation can be helpful:
