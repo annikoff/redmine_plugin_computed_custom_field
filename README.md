@@ -1,25 +1,16 @@
+# This project is no longer maintained
+
 ## ComputedCustomField plugin for Redmine
 
 [![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
 [![Code Climate](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field/badges/gpa.svg)](https://codeclimate.com/github/annikoff/redmine_plugin_computed_custom_field)
 
-***
-
-## Disclaimer
-
-If you need help with a formula's code read [FAQ](https://github.com/annikoff/redmine_plugin_computed_custom_field/wiki/FAQ)
-and check out [existing issues](https://github.com/annikoff/redmine_plugin_computed_custom_field/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aquestion+) 
-or ask [Redmine community](https://www.redmine.org/projects/redmine/boards/2), please do not create issues, this kind of issues will be closed. 
-Please report only about bugs and feature requests. 
-
-***
-
 ### Description:
 
 This plugin provides a possibility to create a computed custom field.
-The value of computed field can be set by formula.
+The value of the computed field can be set by formula.
 In formula constructions like `cfs[cf_id]` are replaced by IDs of custom fields.
-Valid formula is a valid Ruby code executed when customized object is updated.
+A valid formula is a valid Ruby code executed when a customized object is updated.
 To put a field ID in the formula, double-click on an item in the list of available fields.
 
 
@@ -37,8 +28,8 @@ If you need to upgrade from older versions, please check out migration section.
 
 > ### Notes:
 > - cfs[cf_id] &mdash; must be an ID of existing custom field.
-> - Be careful with code in formula, if it would wrong your application can be crashed.
-> - If a computed custom field was created after creating of customized object you need to re-save an object to evaluate computations.
+> - Be careful with code in a formula, if it would wrong your application can be crashed.
+> - If a computed custom field was created after creating of a customized object you need to re-save an object to evaluate computations.
 > - After updating of formula customized objects should be re-saved.
 
 ### Installation:
@@ -114,5 +105,12 @@ To write formulas this documentation can be helpful:
 - [Group](http://www.rubydoc.info/github/edavis10/redmine/Group)
 - [Document](http://www.rubydoc.info/github/edavis10/redmine/Document)
 - [TimeEntryActivity, IssuePriority, DocumentCategory](http://www.rubydoc.info/github/edavis10/redmine/Enumeration)
+
+
+### Getting help
+
+If you need help with a formula's code read [FAQ](https://github.com/annikoff/redmine_plugin_computed_custom_field/wiki/FAQ)
+and check out [existing issues](https://github.com/annikoff/redmine_plugin_computed_custom_field/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aquestion+) 
+or ask [Redmine community](https://www.redmine.org/projects/redmine/boards/2).
 
 Licensed under the [MIT-LICENSE](MIT-LICENSE)
