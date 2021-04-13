@@ -1,5 +1,7 @@
 # This project is no longer maintained
 
+Maintenance has been taken over by [Darko](https://github.com/dpalic). Please, go to https://www.redmine.org/plugins/computed_custom_field_ng.
+
 ## ComputedCustomField plugin for Redmine
 
 [![Build Status](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field.svg?branch=master)](https://travis-ci.org/annikoff/redmine_plugin_computed_custom_field)
